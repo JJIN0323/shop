@@ -34,6 +34,7 @@ export default function authentication(SpecificComponent, option, adminRoute = n
         }, [dispatch, props.history, user.googleAuth])
 
         return (
+            // 컴포넌트에서 필요한 정보를 가져갈 수 있음
             <SpecificComponent {...props} user={user} />
         )
     }

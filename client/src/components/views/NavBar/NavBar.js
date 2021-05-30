@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import LeftMenu from './Sections/LeftMenu'
 import RightMenu from './Sections/RightMenu'
-import { useDisclosure } from '@chakra-ui/react'
-import { IconButton } from '@chakra-ui/react'
-import { HamburgerIcon } from '@chakra-ui/icons'
-import { Drawer, DrawerBody, DrawerHeader, DrawerOverlay, DrawerContent, DrawerCloseButton } from '@chakra-ui/react'
+import { Drawer, Button } from 'antd'
+import { MenuOutlined } from '@ant-design/icons'
 import logo from './logo.png'
 import './Sections/Navbar.css'
 
 function NavBar() {
 
-  const { isOpen, onOpen, onClose } = useDisclosure()
-  const btnRef = React.useRef()
+  const [visible, setVisible] = useState(false)
+
+  const showDrawer = () => {
+    setVisible(true)
+  }
+
+  const onClose = () => {
+    setVisible(false)
+  } 
 
   return (
     <nav className='header'>
@@ -20,31 +25,29 @@ function NavBar() {
       </div>
       <div className='menu'>
         <div className='menuLeft'>
-          <LeftMenu />
+          <LeftMenu mode='horizontal' />
         </div>
         <div className='menuRight'>
-          <RightMenu />
+          <RightMenu mode='horizontal' />
         </div>
-        <IconButton aria-label="Search database" icon={<HamburgerIcon />} ref={btnRef} onClick={onOpen} className='mobileMenu' />
-      <Drawer
-        isOpen={isOpen}
-        placement="right"
-        onClose={onClose}
-        finalFocusRef={btnRef}
-      >
-        <DrawerOverlay />
-        <DrawerContent>
-          <DrawerCloseButton />
-          <DrawerHeader>
-            <RightMenu />
-          </DrawerHeader>
-
-          <DrawerBody>
-            CATEGORY-
-          </DrawerBody>
-
-        </DrawerContent>
-      </Drawer>
+        <Button
+          className='mobileMenu'
+          type='primary'
+          onClick={showDrawer}
+        >
+          <MenuOutlined />
+        </Button>
+        <Drawer
+          title=''
+          placement='right'
+          className='menu_drawer'
+          closable={false}
+          onClose={onClose}
+          visible={visible}
+        >
+          <LeftMenu mode='inline' />
+          <RightMenu mode='inline' />
+        </Drawer>
       </div>
     </nav>
   )

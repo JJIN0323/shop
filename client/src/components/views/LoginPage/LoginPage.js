@@ -3,7 +3,8 @@ import { withRouter } from 'react-router-dom'
 import { loginUser } from '../../../_actions/user_actions'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
-import { Form, Icon, Input, Button, Checkbox } from 'antd'
+import { Form, Input, Button, Checkbox } from 'antd'
+import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import { useDispatch } from 'react-redux'
 
 const formItemLayout = {
@@ -90,14 +91,13 @@ function LoginPage(props) {
         return (
           <div className='container'>
 
-            <div className='title'>Sign In</div>
-            <p className='subTitle'>If you do not have an account,<br/> registering for an account is free and simple.</p>
+            <p className='title'>Sign In</p>
             <Form style={{ minWidth: '290px' }} {...formItemLayout} onSubmit={handleSubmit}>
 
               <Form.Item required>
                 <Input
                   id='email'
-                  prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder='　Email'
                   type='email'
                   value={values.email}
@@ -115,7 +115,7 @@ function LoginPage(props) {
               <Form.Item required>
                 <Input
                   id='password'
-                  prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<LockOutlined type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder='　Password'
                   type='password'
                   value={values.password}

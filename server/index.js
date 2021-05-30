@@ -33,6 +33,10 @@ app.use(bodyParser.json())
 app.use(cookieParser())
 
 app.use('/api/users', require('./routes/users'))
+app.use('/api/product', require('./routes/product'))
+
+// 정적자료를 제공하기 위해 상대적 경로를 지정
+app.use('/uploads', express.static('uploads'))
 
 // 서버가 프로덕션 상태일 때
 if (process.env.NODE_ENV === 'production') {
@@ -51,3 +55,7 @@ const port = process.env.PORT || 5000
 app.listen(port, () => {
   console.log(`Server Listening on ${port}`)
 })
+
+process.on('uncaughtException', function (err) {
+  console.log('NODEJS ERR', err);
+}); 

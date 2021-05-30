@@ -4,12 +4,7 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { registerUser } from '../../../_actions/user_actions'
 import { useDispatch } from 'react-redux'
-
-import {
-  Form,
-  Input,
-  Button,
-} from 'antd'
+import { Form, Input, Button } from 'antd'
 
 const formItemLayout = {
   labelCol: {
@@ -92,8 +87,7 @@ function RegisterPage(props) {
         } = props
         return (
           <div className='container'>
-            <div className='title'>Sign Up</div>
-            <p className='subTitle'>Signing up for an account is free and easy.</p>
+            <p className='title'>Sign Up</p>
             <Form style={{ minWidth: '290px' }} {...formItemLayout} onSubmit={handleSubmit} >
 
               <Form.Item required>

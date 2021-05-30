@@ -1,13 +1,13 @@
 import React from 'react'
-import { Breadcrumb, BreadcrumbItem, BreadcrumbLink } from '@chakra-ui/react'
+import { Menu } from 'antd'
 
-function LeftMenu() {
+function LeftMenu(props) {
   return (
-    <Breadcrumb>
-      <BreadcrumbItem>
-        <BreadcrumbLink href='/'>Home</BreadcrumbLink>
-      </BreadcrumbItem>
-    </Breadcrumb>
+    <Menu mode={props.mode}>
+    <Menu.Item key='home'>
+      <a href='/'>Home</a>
+    </Menu.Item>
+  </Menu>
   )
 }
 

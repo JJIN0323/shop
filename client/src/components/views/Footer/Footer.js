@@ -4,7 +4,8 @@ import React from 'react'
 function Footer() {
     return (
         <div className='footer'>
-           <span>Copyright 2021 HYEJIN LIM</span>
+           <p>Copyright 2021 HYEJIN LIM.</p>
+           <mark>Images : Unsplash</mark>
         </div>
     )
 }
