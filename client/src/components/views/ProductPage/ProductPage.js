@@ -1,46 +1,49 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios'
-import { Card, Row, Col } from 'antd'
+import { Card, Row, Col, Button } from 'antd'
 
 function ProductPage() {
 
     const { Meta } = Card
 
     const [Products, setProducts] = useState([])
-    const [Skip, setSkip] = useState(0)
+    const [Skip, setSkip] = useState(0) //mongoDB method
     const [Limit, setLimit] = useState(8)
     const [PostAmount, setPostAmount] = useState()
 
     useEffect(() => {
-
+        // 갯수 제한
         let body = {
             skip: Skip,
             limit: Limit
         }
-
         getProducts(body)
-
-    }, [])
+    })
 
     const getProducts = (body) => {
+        // 데이터베이스에 모든 정보를 가져옴
         axios.post('/api/product/products', body)
-            .then(response => {
-                if (response.data.success) {
-                    if (body.loadMore) {
-                        setProducts([...Products, ...response.data.productInfo])
-                    } else {
-                        setProducts(response.data.productInfo)
-                    }
-                    setPostAmount(response.data.postSize)
+        .then(response => {
+            if (response.data.success) {
+                // 더보기 조건
+                if (body.loadMore) {
+                    setProducts([...Products, ...response.data.productInfo])
+                    console.log('얍얍', response.data)
                 } else {
-                    alert(" 상품들을 가져오는데 실패 했습니다.")
+                    setProducts(response.data.productInfo)
                 }
-            })
+                setPostAmount(response.data.postAmount)
+                //console.log(response.data)                
+            } else {
+                alert('Failed to load product list.')
+            }
+        })
     }
 
-    const loadMoreHanlder = () => {
+    const moreHandler = () => {
 
         let skip = Skip + Limit
+
         let body = {
             skip: skip,
             limit: Limit,
@@ -48,15 +51,18 @@ function ProductPage() {
         }
 
         getProducts(body)
-        setSkip(skip)
+        setSkip(skip) // Skip 갯수를 저장
     }
+
+    //const [isShow, setIsShow] = useState(false)
 
     const renderCards = Products.map((product, index) => {
 
         return <Col lg={6} md={8} sm={24} key={index}>
-            <Card style={{width: '50%', height: '320px', marginBottom: '2rem'}}
+            
+            <Card className='GridItem'
                 cover={<img src={`http://localhost:5000/${product.images}`} alt='test' />}>
-                <Meta title={product.title} description={product.productDetail} />
+                    <Meta title={product.title} description={product.productDetail} />
             </Card>
         </Col>
     })
@@ -77,7 +83,7 @@ function ProductPage() {
 
             <div>
                 {PostAmount >= Limit && 
-                <button className='grayButton' onClick={loadMoreHanlder}>MORE</button>
+                <Button className='grayButton' type='submit' onClick={moreHandler}>MORE</Button>
                 }
                 
             </div>

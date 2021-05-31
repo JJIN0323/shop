@@ -657,6 +657,7 @@ nav.header > .menu > .mobileMenu {
 .carousel {
     width: 100vw;
     height: 100vh;
+    background: #ebebeb;
 }
 
 .carouselItem {
@@ -782,8 +783,13 @@ li.ant-menu-item.ant-menu-item-selected::after {
 }
 
 .ant-carousel .slick-vertical .slick-slide {
-    margin-bottom: -2rem;
+    margin-bottom: 0;
     border: 0;
+}
+
+.ant-carousel .slick-vertical .slick-slide > * > img {
+    width: 100%;
+    height: 100vh;
 }
 
 .ant-carousel-vertical .slick-dots {
@@ -884,7 +890,8 @@ li.ant-menu-item.ant-menu-item-selected::after {
 /* PRODUCT - GridImage COLUMN */
 
 .GridItem {
-    width: 100%;
+    width: 20rem;
+    height: 25rem;
 }
 
 .GridItem > .GridItemImg {
@@ -897,13 +904,8 @@ li.ant-menu-item.ant-menu-item-selected::after {
   -moz-align-items: center;
   -ms-align-items: center;
   align-items: center;
-  height: 30rem;
+  height: 10rem;
   overflow: hidden;
-}
-
-.GridItem > .GridItemImg > a > img {
-    width: 22.5rem !important;
-    height: 31rem;
 }
 
 .GridItem > .GridItemRow {
