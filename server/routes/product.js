@@ -47,4 +47,26 @@ router.post('/', (req, res) => {
     })
 })
 
+router.post('/products', (req, res) => {
+
+    // parseInt는 String을 Number로 변환
+    let limit = req.body.limit ? parseInt(req.body.limit) : 8
+    let skip = req.body.skip ? parseInt(req.body.skip) : 0
+
+    // product collection에 저장된 상품정보를 가져오기
+    Product.find()
+    .populate('writer') // ObjectID를 객체로 치환
+    .skip(skip)
+    .limit(limit)
+    .exec((err, productInfo) => {
+        if (err) return res.status(400).json({ success: false, err})
+        return res.status(200).json({
+            success: true,
+            productInfo,
+            postAmount: productInfo.length
+        })
+    })
+
+})
+
 module.exports = router

@@ -73,7 +73,7 @@ function UploadProductPage(props) {
         .then(response => {
             if(response.data.success) {
                 alert('Product upload was successful.')
-                props.history.push('/')
+                props.history.push('/product/shop')
             } else {
                 alert('Product upload failed.')
             }

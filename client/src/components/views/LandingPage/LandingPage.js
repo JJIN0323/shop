@@ -1,12 +1,28 @@
 import React from 'react'
+import { Carousel } from 'antd'
 
 function LandingPage() {
 
+    const [dotPosition, setDotPosition] = React.useState('right')
+
+    const handlePositionChange = ({ target: { value } }) => { // because, warnings
+        setDotPosition(value)
+    }
+
     return (
-        <div className='container'>
-            {/* latest */}
-            <div className='thinTitle'>EXAMPLE</div>
-                <p className='subTitle'>Lorem ipsum dolor sit amet consectetur adipiscing elit. Duis dapibus rutrum facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Etiam tristique libero eu nibh porttitor amet fermentum. Nullam venenatis erat id vehicula ultrices sed ultricies condimentum. Magna sed etiam consequat, et lorem adipiscing sed nulla. Volutpat nisl et tempus et dolor libero, feugiat magna tempus, sed et lorem adipiscing.</p>
+        <div className='carousel' onChange={handlePositionChange}>
+
+            <Carousel autoplay dotPosition={dotPosition}>
+                <img style={{width: '100%'}}
+                     src={`/images/hanen-souhail-OL9b_8q2m0k-unsplash.jpg`} alt='unsplash' />
+                <img style={{width: '100%'}}
+                    src={`/images/pooja-chaudhary-q29kexdHODM-unsplash.jpg`} alt='unsplash' />
+                <img style={{width: '100%'}}
+                    src={`/images/saskia-fairfull-rkwtlUavj7w-unsplash.jpg`} alt='unsplash' />
+                <img style={{width: '100%'}}
+                    src={`/images/hanna-postova-xU34s6wuxyU-unsplash.jpg`} alt='unsplash' />
+            </Carousel>
+            
         </div>
     )
 }

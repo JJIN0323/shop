@@ -652,6 +652,17 @@ nav.header > .menu > .mobileMenu {
     cursor: pointer;
 }
 
+/* INDEX - SLIDER */
+
+.carousel {
+    width: 100vw;
+    height: 100vh;
+}
+
+.carouselItem {
+    overflow: hidden;
+}
+
 /* ANT DESIGN MODIFY */
 
 .ant-form-item {
@@ -770,6 +781,34 @@ li.ant-menu-item.ant-menu-item-selected::after {
     border-color: #7f7e7b;
 }
 
+.ant-carousel .slick-vertical .slick-slide {
+    margin-bottom: -2rem;
+    border: 0;
+}
+
+.ant-carousel-vertical .slick-dots {
+    width: 1rem;
+    /* height: 100vh; */
+}
+
+.ant-carousel-vertical .slick-dots-right {
+    right: 1.2rem;
+}
+
+.ant-carousel .slick-dots li {
+    padding: 0.2rem 0;
+}
+
+.ant-carousel-vertical .slick-dots li button,
+.ant-carousel .slick-dots li.slick-active button {
+    width: 0.5rem;
+    height: 1.5rem;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+    background: rgba(54, 47, 45, 0.5);
+}
+
 .ant-popover-inner {
     text-align: center;
     padding: 0.3rem 0.8rem;
@@ -808,7 +847,41 @@ li.ant-menu-item.ant-menu-item-selected::after {
     border-color: #9c6830 !important;
 }
 
-/* INDEX - GridImage COLUMN */
+/* UPLOAD BOX */
+
+.uploadBox {
+    padding: 0 0 1rem 0;
+}
+
+.uploadFileBox {
+    width: 100%;
+    height: 8rem;
+    text-align: center;
+    padding: 1.5rem 0;
+    margin: 0 0 0.5rem 0;
+    background: #f3f3f3;
+    cursor: pointer;
+}
+
+.uploadFile {
+    padding: 0.3rem 0;
+    color: #777777;
+}
+
+.uploadFileName {
+    padding-left: 0.5rem;
+}
+
+.uploadFileDelete {
+    float: right;
+}
+
+.uploadFileDelete:hover {
+    color: #bd3b3b;
+    cursor: pointer;
+}
+
+/* PRODUCT - GridImage COLUMN */
 
 .GridItem {
     width: 100%;
@@ -982,36 +1055,3 @@ dl.movieInfo dt:first-child {
     background: rgba(0, 0, 0, 0.2);
 }
 
-/* etc */
-
-.uploadBox {
-    padding: 0 0 1rem 0;
-}
-
-.uploadFileBox {
-    width: 100%;
-    height: 8rem;
-    text-align: center;
-    padding: 1.5rem 0;
-    margin: 0 0 0.5rem 0;
-    background: #f3f3f3;
-    cursor: pointer;
-}
-
-.uploadFile {
-    padding: 0.3rem 0;
-    color: #777777;
-}
-
-.uploadFileName {
-    padding-left: 0.5rem;
-}
-
-.uploadFileDelete {
-    float: right;
-}
-
-.uploadFileDelete:hover {
-    color: #bd3b3b;
-    cursor: pointer;
-}
