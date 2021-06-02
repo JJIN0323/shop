@@ -9,7 +9,7 @@ function ProductPage() {
     const [Products, setProducts] = useState([])
     const [Skip, setSkip] = useState(0) //mongoDB method
     const [Limit, setLimit] = useState(8)
-    const [PostAmount, setPostAmount] = useState()
+    const [PostAmount, setPostAmount] = useState(0)
 
     useEffect(() => {
         // 갯수 제한
@@ -18,7 +18,8 @@ function ProductPage() {
             limit: Limit
         }
         getProducts(body)
-    })
+        //console.log('얍얍', body)
+    }, [])
 
     const getProducts = (body) => {
         // 데이터베이스에 모든 정보를 가져옴
@@ -28,9 +29,10 @@ function ProductPage() {
                 // 더보기 조건
                 if (body.loadMore) {
                     setProducts([...Products, ...response.data.productInfo])
-                    console.log('얍얍', response.data)
+                    console.log('정상')
                 } else {
                     setProducts(response.data.productInfo)
+                    console.log('오류')
                 }
                 setPostAmount(response.data.postAmount)
                 //console.log(response.data)                
@@ -53,8 +55,6 @@ function ProductPage() {
         getProducts(body)
         setSkip(skip) // Skip 갯수를 저장
     }
-
-    //const [isShow, setIsShow] = useState(false)
 
     const renderCards = Products.map((product, index) => {
 

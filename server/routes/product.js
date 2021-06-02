@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
 router.post('/products', (req, res) => {
 
     // parseInt는 String을 Number로 변환
-    let limit = req.body.limit ? parseInt(req.body.limit) : 8
+    let limit = req.body.limit ? parseInt(req.body.limit) : 20
     let skip = req.body.skip ? parseInt(req.body.skip) : 0
 
     // product collection에 저장된 상품정보를 가져오기
@@ -66,7 +66,6 @@ router.post('/products', (req, res) => {
             postAmount: productInfo.length
         })
     })
-
 })
 
 module.exports = router

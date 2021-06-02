@@ -98,7 +98,7 @@ function LoginPage(props) {
                 <Input
                   id='email'
                   //prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder='　Email'
+                  placeholder='Email'
                   type='email'
                   value={values.email}
                   onChange={handleChange}
@@ -116,7 +116,7 @@ function LoginPage(props) {
                 <Input
                   id='password'
                   //prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
-                  placeholder='　Password'
+                  placeholder='Password'
                   type='password'
                   value={values.password}
                   onChange={handleChange}
@@ -144,7 +144,7 @@ function LoginPage(props) {
                 <div>
                   <Button className='grayButton' htmlType='submit' disabled={isSubmitting} onSubmit={handleSubmit}>
                     SIGNIN
-                </Button>
+                  </Button>
                 </div>
                 Or <a href='/register'>Register now</a>
               </Form.Item>

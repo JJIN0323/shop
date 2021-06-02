@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
 import axios from 'axios'
+import { AiOutlineDelete } from 'react-icons/ai'
+import { BsCloudUpload } from 'react-icons/bs'
 
 function FileUpload(props) {
 
@@ -55,7 +57,8 @@ function FileUpload(props) {
                     <input {...getInputProps()} />
                     
                     <div className='uploadFileBox'>
-                        <p>Click the file to upload.</p>
+                        <BsCloudUpload className='uploadBoxIcon' />
+                        <p>Drag 'n' drop some files here, or click to select files</p>
                     </div>
                 </div>
             )}
@@ -64,8 +67,7 @@ function FileUpload(props) {
             {UploadImages.map((image, index) => (
                 <div className='uploadFile' key={index}>
                     <span className='uploadFileName'>{image}</span>
-                    <span className='uploadFileDelete' onClick={() => deleteHandler(image)}>
-                    </span>
+                    <AiOutlineDelete className='uploadFileDelete' onClick={() => deleteHandler(image)}/>
                 </div>
             ))}
         </div>

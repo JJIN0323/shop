@@ -185,7 +185,7 @@ function RegisterPage(props) {
 
               <Form.Item {...buttonLayout}>
                 <Button onClick={handleSubmit} className='grayButton' disabled={isSubmitting}>
-                  SUBMIT
+                  SIGNUP
                 </Button>
               </Form.Item>
             </Form>
