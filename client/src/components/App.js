@@ -25,7 +25,6 @@ function App() {
           <Route exact path='/register' component={Auth(RegisterPage, false)} />
           <Route exact path='/product/upload' component={Auth(UploadProductPage, true)} />
           <Route exact path='/product/shop' component={Auth(ProductPage, null)} />
-          {/* shop을 거치면 X */}
           <Route exact path='/product/shop/:productId' component={Auth(DetailProductPage, null)} />
         </Switch>
       </div>
