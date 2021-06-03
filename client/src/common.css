@@ -253,7 +253,7 @@ p.formLable {
 }
 
 .marginTop {
-    margin-top: 3rem;
+    margin-top: 2rem;
 }
 
 .displayFlex {
@@ -652,24 +652,28 @@ nav.header > .menu > .mobileMenu {
     cursor: pointer;
 }
 
-/* INDEX - SLIDER */
+@media (max-width: 767px) {
+    nav.header > .menu > .mobileMenu {
+        display: inline-block !important;
+    }
 
-.carousel {
-    width: 100vw;
-    height: 100vh;
-    background: #ebebeb;
+    nav.header > .menu > .menuLeft,
+    nav.header > .menu > .menuRight {
+        display: none;
+    }
 }
 
-.carouselItem {
-    overflow: hidden;
+/* HAMBURGER MENU */
+
+.hamburger {
+    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' %3F%3E%3Csvg height='48px' version='1.1' viewBox='0 0 48 48' width='48px' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Ctitle/%3E%3Cdesc/%3E%3Cg fill='white' fill-rule='evenodd' id='Page-1' stroke='none' stroke-width='1'%3E%3Cg id='Artboard-Copy' transform='translate(-287.000000, -249.000000)'%3E%3Cpath d='M297,260 C295.895,260 295,260.896 295,262.001 L295,264 C295,265.105 295.895,266.001 297,266.001 L325,266.001 C326.105,266.001 327,265.105 327,264 L327,262.001 C327,260.896 326.105,260 325,260 L297,260 Z M297,269 C295.895,269 295,269.895 295,271 L295,273 C295,274.106 295.895,275 297,275 L325,275 C326.105,275 327,274.106 327,273 L327,271 C327,269.895 326.105,269 325,269 L297,269 Z M297,277.999 C295.895,277.999 295,278.895 295,280 L295,281.999 C295,283.104 295.895,284 297,284 L325,284 C326.105,284 327,283.104 327,281.999 L327,280 C327,278.895 326.105,277.999 325,277.999 L297,277.999 Z' fill='%23000000' id='list2'/%3E%3Cg id='slices' transform='translate(47.000000, 9.000000)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    width: 3rem;
+    height: 3rem;
 }
 
 /* ANT DESIGN MODIFY */
 
-.ant-form-item {
-    display: flex;
-    justify-content: center;
-}
+/* ANT MENU CSS */
 
 .ant-menu-horizontal {
     line-height: 5rem;
@@ -750,23 +754,22 @@ li.ant-menu-item.ant-menu-item-selected::after {
     }
 }
 
-/* HAMBURGER MENU */
+/* ANT SLIDER */
 
-.hamburger {
-    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' %3F%3E%3Csvg height='48px' version='1.1' viewBox='0 0 48 48' width='48px' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Ctitle/%3E%3Cdesc/%3E%3Cg fill='white' fill-rule='evenodd' id='Page-1' stroke='none' stroke-width='1'%3E%3Cg id='Artboard-Copy' transform='translate(-287.000000, -249.000000)'%3E%3Cpath d='M297,260 C295.895,260 295,260.896 295,262.001 L295,264 C295,265.105 295.895,266.001 297,266.001 L325,266.001 C326.105,266.001 327,265.105 327,264 L327,262.001 C327,260.896 326.105,260 325,260 L297,260 Z M297,269 C295.895,269 295,269.895 295,271 L295,273 C295,274.106 295.895,275 297,275 L325,275 C326.105,275 327,274.106 327,273 L327,271 C327,269.895 326.105,269 325,269 L297,269 Z M297,277.999 C295.895,277.999 295,278.895 295,280 L295,281.999 C295,283.104 295.895,284 297,284 L325,284 C326.105,284 327,283.104 327,281.999 L327,280 C327,278.895 326.105,277.999 325,277.999 L297,277.999 Z' fill='%23000000' id='list2'/%3E%3Cg id='slices' transform='translate(47.000000, 9.000000)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    width: 3rem;
-    height: 3rem;
+.ant-slider-track {
+    background: #7f7e7b;
 }
 
-@media (max-width: 767px) {
-    nav.header > .menu > .mobileMenu {
-        display: inline-block !important;
-    }
+.ant-slider:hover .ant-slider-track {
+    background: #ca9300;
+}
 
-    nav.header > .menu > .menuLeft,
-    nav.header > .menu > .menuRight {
-        display: none;
-    }
+.ant-slider-handle {
+    border: 2px solid #adadad;
+}
+
+.ant-slider-handle.ant-tooltip-open {
+    border-color: #9c6830;
 }
 
 .anticon-file-image {
@@ -781,6 +784,20 @@ li.ant-menu-item.ant-menu-item-selected::after {
 .ant-upload.ant-upload-drag:not(.ant-upload-disabled):hover {
     border-color: #7f7e7b;
 }
+
+/* INDEX */
+
+.carousel {
+    width: 100vw;
+    height: 100vh;
+    background: #ebebeb;
+}
+
+.carouselItem {
+    overflow: hidden;
+}
+
+/* ANT CAROUSEL */
 
 .ant-carousel .slick-vertical .slick-slide {
     margin-bottom: 0;
@@ -824,6 +841,8 @@ li.ant-menu-item.ant-menu-item-selected::after {
     background: rgba(54, 47, 45, 0.5);
 }
 
+/* ANT POPOVER */
+
 .ant-popover-inner {
     text-align: center;
     padding: 0.3rem 0.8rem;
@@ -840,6 +859,13 @@ li.ant-menu-item.ant-menu-item-selected::after {
 .ant-popover-placement-top > .ant-popover-content > .ant-popover-arrow {
     border-right-color: #ca9300;
     border-bottom-color: #ca9300;
+}
+
+/* ANT FORM */
+
+.ant-form-item {
+    display: flex;
+    justify-content: center;
 }
 
 .ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
@@ -859,7 +885,29 @@ li.ant-menu-item.ant-menu-item-selected::after {
 .ant-checkbox-wrapper:hover .ant-checkbox-inner,
 .ant-checkbox:hover .ant-checkbox-inner,
 .ant-checkbox-input:focus + .ant-checkbox-inner {
-    border-color: #9c6830 !important;
+    border-color: #333333 !important;
+}
+
+.ant-radio-wrapper:hover .ant-radio,
+.ant-radio:hover .ant-radio-inner,
+.ant-radio-input:focus + .ant-radio-inner,
+.ant-radio-checked .ant-radio-inner,
+.ant-radio-checked::after {
+    border-color: #333333 !important;
+}
+
+.ant-radio-inner::after {
+    background: #333333;
+}
+
+/* PRODUCT */
+
+.filterBox {
+    padding: 1rem 0;
+}
+
+.searchBox {
+    margin: 2rem 0;
 }
 
 /* UPLOAD BOX */
@@ -900,15 +948,29 @@ li.ant-menu-item.ant-menu-item-selected::after {
     cursor: pointer;
 }
 
-/* PRODUCT - GridImage COLUMN */
+/* ANT CARD */
 
-.GridItem {
-    width: 20rem;
-    height: 35rem;
+.ant-card-cover {
+    height: 25rem;
+    overflow: hidden;
+}
+
+/* PRODUCT - CardImage COLUMN */
+
+.CardItem {
+    height: 30rem;
     margin-bottom: 2rem;
 }
 
-.GridItem > .GridItemImg {
+.CardItem:nth-child(n+1) {
+    padding-right: 1rem;
+}
+
+.CardItem:nth-child(4n) {
+    padding-right: 0;
+}
+
+.CardItem > div * > .CardItemImg {
   display: flex;
   -webkit-justify-content: center;
   -moz-justify-content: center;
@@ -918,11 +980,11 @@ li.ant-menu-item.ant-menu-item-selected::after {
   -moz-align-items: center;
   -ms-align-items: center;
   align-items: center;
-  height: 10rem;
+  width: 100%;
   overflow: hidden;
 }
 
-.GridItem > .GridItemRow {
+.CardItem > .CardItemRow {
     display: flex;
     -webkit-justify-content: center;
     -moz-justify-content: center;
@@ -931,7 +993,18 @@ li.ant-menu-item.ant-menu-item-selected::after {
     overflow: hidden;
 }
 
-/* Grid Image Hover animation */
+@media screen and (max-width: 1280px) {
+    .CardItem {
+        height: 25rem;
+    }
+
+    .ant-card-cover {
+        height: 20rem;
+        overflow: hidden;
+    }    
+}
+
+/* Card Image Hover animation */
 
 .description {
     position: absolute;

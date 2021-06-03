@@ -6,6 +6,7 @@ import LoginPage from './views/LoginPage/LoginPage'
 import RegisterPage from './views/RegisterPage/RegisterPage'
 import ProductPage from './views/ProductPage/ProductPage'
 import UploadProductPage from './views/UploadProductPage/UploadProductPage'
+import DetailProductPage from './views/DetailProductPage/DetailProductPage'
 import NavBar from './views/NavBar/NavBar'
 import Footer from './views/Footer/Footer'
 
@@ -24,6 +25,8 @@ function App() {
           <Route exact path='/register' component={Auth(RegisterPage, false)} />
           <Route exact path='/product/upload' component={Auth(UploadProductPage, true)} />
           <Route exact path='/product/shop' component={Auth(ProductPage, null)} />
+          {/* shop을 거치면 X */}
+          <Route exact path='/product/shop/:productId' component={Auth(DetailProductPage, null)} />
         </Switch>
       </div>
       <Footer />

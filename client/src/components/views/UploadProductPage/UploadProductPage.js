@@ -7,7 +7,7 @@ const formItemLayout = {
     wrapperCol: {
       xs: { span: 12 },
       sm: { span: 18 },
-    },
+    }
 }
 
 function UploadProductPage(props) {
@@ -15,16 +15,16 @@ function UploadProductPage(props) {
     const { TextArea } = Input
 
     const OptionTypes = [
-        { key: 1, value: 'Sale' },
-        { key: 2, value: 'Sold Out' },
-        { key: 3, value: 'Ready to restock' }
+        { key: 1, value: 'Chair' },
+        { key: 2, value: 'Plant' },
+        { key: 3, value: 'ETC' }
     ]
 
     // 서버로 보내야할 정보들
     const [Subject, setSubject] = useState('')
     const [ProductDetail, setProductDetail] = useState('')
     const [Price, setPrice] = useState(0)
-    const [OptionValue, setOptionValue] = useState(1)
+    const [CategoryValue, setCategoryValue] = useState(1)
     // eslint-disable-next-line no-unused-vars
     const [UploadImages, setUploadImages] = useState([])
 
@@ -40,8 +40,8 @@ function UploadProductPage(props) {
         setPrice(event.currentTarget.value)
     }
 
-    const OptionValueChangeHandler = (event) => {
-        setOptionValue(event.currentTarget.value)
+    const CategoryValueChangeHandler = (event) => {
+        setCategoryValue(event.currentTarget.value)
         //console.log(event.currentTarget.value)
     }
 
@@ -53,7 +53,7 @@ function UploadProductPage(props) {
     const submitHandler = (event) => {
         event.preventDefault()
 
-        if(!Subject || !ProductDetail || !Price || !OptionValue || !UploadImages) {
+        if(!Subject || !ProductDetail || !Price || !CategoryValue || !UploadImages) {
             return alert('Please fill in all fields.')
         }
 
@@ -114,8 +114,8 @@ function UploadProductPage(props) {
               </Form.Item>
 
               <Form.Item>
-                <p className='formLable'>Status</p>
-                <select onChange={OptionValueChangeHandler} value={OptionValue}>
+                <p className='formLable'>Category</p>
+                <select onChange={CategoryValueChangeHandler} value={CategoryValue}>
                     {OptionTypes.map(item => (
                         <option key={item.key} value={item.key}>{item.value}</option>
                     ))}

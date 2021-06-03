@@ -25,7 +25,11 @@ const productSchema = mongoose.Schema({
         type: String
     },
     optionType: {
-        type: String // array로 받아야하나?
+        type: String
+    },
+    categoryList: {
+        type: Number,
+        default: 1
     },
     sold: {
         type: Number,
@@ -37,6 +41,16 @@ const productSchema = mongoose.Schema({
         default: 0
     }
 }, { timestamps: true })
+
+productSchema.index({
+    subject: 'text',
+    productDetail: 'text'
+}, {
+    weights: {
+        subject: 5, // 5배정도 중요
+        productDetail: 1
+    }
+})
 
 
 const Product = mongoose.model('Product', productSchema)
