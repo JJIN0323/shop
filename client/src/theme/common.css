@@ -339,16 +339,6 @@ textarea.ant-input:invalid {
     box-shadow: none;
 }
 
-input[type="text"]:hover,
-input[type="password"]:hover,
-input[type="email"]:hover,
-input[type="tel"]:hover,
-input[type="search"]:hover,
-select:hover,
-textarea.ant-input:hover {
-    border: solid 1px #7f7e7b;
-}
-
 input[type="text"]:focus,
 input[type="password"]:focus,
 input[type="email"]:focus,
@@ -363,6 +353,7 @@ textarea.ant-input:focus {
 .feedback {
     color: #bd3b3b;
     height: 2rem;
+    line-height: 2.5rem;
     padding-left: 0.5rem;
     margin-top: -0.2rem;
 }
@@ -640,12 +631,12 @@ nav.header > .menu > .menuRight {
 nav.header > .menu > .mobileMenu {
     float: right;
     display: none !important;
+    font-size: 3rem;
     height: 3rem;
-    padding: 0.1rem 0;
-    margin-top: 0.8rem;
-    line-height: 1.5rem;
-    color: #ffffff;
+    color: #000000;
     background: transparent;
+    padding: 0;
+    margin-top: 1rem;
     border: 0;
     box-shadow: none;
     outline: 0;
@@ -663,128 +654,6 @@ nav.header > .menu > .mobileMenu {
     }
 }
 
-/* HAMBURGER MENU */
-
-.hamburger {
-    background-image: url("data:image/svg+xml,%3C%3Fxml version='1.0' %3F%3E%3Csvg height='48px' version='1.1' viewBox='0 0 48 48' width='48px' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Ctitle/%3E%3Cdesc/%3E%3Cg fill='white' fill-rule='evenodd' id='Page-1' stroke='none' stroke-width='1'%3E%3Cg id='Artboard-Copy' transform='translate(-287.000000, -249.000000)'%3E%3Cpath d='M297,260 C295.895,260 295,260.896 295,262.001 L295,264 C295,265.105 295.895,266.001 297,266.001 L325,266.001 C326.105,266.001 327,265.105 327,264 L327,262.001 C327,260.896 326.105,260 325,260 L297,260 Z M297,269 C295.895,269 295,269.895 295,271 L295,273 C295,274.106 295.895,275 297,275 L325,275 C326.105,275 327,274.106 327,273 L327,271 C327,269.895 326.105,269 325,269 L297,269 Z M297,277.999 C295.895,277.999 295,278.895 295,280 L295,281.999 C295,283.104 295.895,284 297,284 L325,284 C326.105,284 327,283.104 327,281.999 L327,280 C327,278.895 326.105,277.999 325,277.999 L297,277.999 Z' fill='%23000000' id='list2'/%3E%3Cg id='slices' transform='translate(47.000000, 9.000000)'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-    width: 3rem;
-    height: 3rem;
-}
-
-/* ANT DESIGN MODIFY */
-
-/* ANT MENU CSS */
-
-.ant-menu-horizontal {
-    line-height: 5rem;
-    border-bottom: 0;
-}
-
-.ant-menu-horizontal > .ant-menu-item {
-    top: 0;
-    padding: 0 0.9rem;
-    border-bottom: 0;
-    cursor: pointer;
-}
-
-.ant-menu-horizontal > .ant-menu-item > a {
-    font-size: 1.2rem;
-}
-
-.ant-menu-item:hover,
-.ant-menu-item-active,
-.ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
-.ant-menu-horizontal:not(.ant-menu-dark) > .ant-menu-item:hover,
-.ant-menu-submenu-active,
-.ant-menu-submenu-title:hover,
-.ant-menu-horizontal > .ant-menu-item:hover,
-.ant-menu-horizontal > .ant-menu-item-active,
-.ant-menu-horizontal > .ant-menu-item-selected,
-.ant-menu-horizontal > .ant-menu-item-selected > a,
-.ant-menu-horizontal > .ant-menu-submenu-selected,
-.ant-menu-horizontal > .ant-menu-submenu:hover,
-.ant-menu-submenu-title:hover {
-    color: #000000;
-    border-bottom: 0;
-}
-
-.ant-menu-horizontal > .ant-menu-submenu {
-    top: 0;
-    border-bottom: 0;
-    cursor: pointer;
-}
-
-.ant-menu-item:active,
-.ant-menu-submenu-title:active,
-.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background: transparent;
-}
-
-.ant-menu-submenu-selected,
-.ant-menu-inline .ant-menu-item::after,
-li.ant-menu-item.ant-menu-item-selected,
-li.ant-menu-item.ant-menu-item-selected:focus,
-li.ant-menu-item.ant-menu-item-selected::after {
-    color: #000000;
-    border-right: 0;
-}
-
-.ant-menu-submenu-inline > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::after,
-.ant-menu-submenu-inline > .ant-menu-submenu-title:hover .ant-menu-submenu-arrow::before {
-    background: -webkit-gradient(linear, left top, right top, from(#000000), to(#000000));
-    background: linear-gradient(to right, #000000, #000000);
-}
-
-.ant-menu-item-group-title {
-    padding: 0;
-}
-
-.ant-menu-inline {
-    border: 0;
-}
-
-.ant-menu {
-    font-size: inherit;
-    background: transparent;
-}
-
-@media screen and (max-width: 980px) {
-    .ant-menu-item > a {
-        font-size: 1.2rem;
-    }
-}
-
-/* ANT SLIDER */
-
-.ant-slider-track {
-    background: #7f7e7b;
-}
-
-.ant-slider:hover .ant-slider-track {
-    background: #ca9300;
-}
-
-.ant-slider-handle {
-    border: 2px solid #adadad;
-}
-
-.ant-slider-handle.ant-tooltip-open {
-    border-color: #9c6830;
-}
-
-.anticon-file-image {
-    font-size: 3rem;
-    color: #777777;
-}
-
-.ant-upload.ant-upload-drag p.ant-upload-drag-icon .anticon {
-    color: #777777;
-}
-
-.ant-upload.ant-upload-drag:not(.ant-upload-disabled):hover {
-    border-color: #7f7e7b;
-}
-
 /* INDEX */
 
 .carousel {
@@ -795,50 +664,6 @@ li.ant-menu-item.ant-menu-item-selected::after {
 
 .carouselItem {
     overflow: hidden;
-}
-
-/* ANT CAROUSEL */
-
-.ant-carousel .slick-vertical .slick-slide {
-    margin-bottom: 0;
-    border: 0;
-}
-
-.ant-carousel .slick-list .slick-slide.slick-active {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100% !important;
-}
-
-@media screen and (max-width: 1280px) {
-    .ant-carousel .slick-vertical .slick-slide > * > img {
-        width: auto !important;
-        height: 100vh;
-    }    
-}
-
-.ant-carousel-vertical .slick-dots {
-    width: 1rem;
-    /* height: 100vh; */
-}
-
-.ant-carousel-vertical .slick-dots-right {
-    right: 1.2rem;
-}
-
-.ant-carousel .slick-dots li {
-    padding: 0.2rem 0;
-}
-
-.ant-carousel-vertical .slick-dots li button,
-.ant-carousel .slick-dots li.slick-active button {
-    width: 0.5rem;
-    height: 1.5rem;
-}
-
-.ant-carousel .slick-dots li.slick-active button {
-    background: rgba(54, 47, 45, 0.5);
 }
 
 /* ANT POPOVER */
@@ -859,55 +684,6 @@ li.ant-menu-item.ant-menu-item-selected::after {
 .ant-popover-placement-top > .ant-popover-content > .ant-popover-arrow {
     border-right-color: #ca9300;
     border-bottom-color: #ca9300;
-}
-
-/* ANT FORM */
-
-.ant-form-item {
-    display: flex;
-    justify-content: center;
-}
-
-.ant-input-affix-wrapper:hover .ant-input:not(.ant-input-disabled) {
-    border-color: #7f7e7b;
-}
-
-.ant-input-affix-wrapper .ant-input:not(:first-child) {
-    padding-left: 2.5rem;
-}
-
-.ant-checkbox-checked .ant-checkbox-inner {
-    background: #333333;
-    border-color:#333333;
-}
-
-.ant-checkbox-checked::after,
-.ant-checkbox-wrapper:hover .ant-checkbox-inner,
-.ant-checkbox:hover .ant-checkbox-inner,
-.ant-checkbox-input:focus + .ant-checkbox-inner {
-    border-color: #333333 !important;
-}
-
-.ant-radio-wrapper:hover .ant-radio,
-.ant-radio:hover .ant-radio-inner,
-.ant-radio-input:focus + .ant-radio-inner,
-.ant-radio-checked .ant-radio-inner,
-.ant-radio-checked::after {
-    border-color: #333333 !important;
-}
-
-.ant-radio-inner::after {
-    background: #333333;
-}
-
-/* PRODUCT */
-
-.filterBox {
-    padding: 1rem 0;
-}
-
-.searchBox {
-    margin: 2rem 0;
 }
 
 /* UPLOAD BOX */
@@ -948,11 +724,14 @@ li.ant-menu-item.ant-menu-item-selected::after {
     cursor: pointer;
 }
 
-/* ANT CARD */
+/* PRODUCT */
 
-.ant-card-cover {
-    height: 25rem;
-    overflow: hidden;
+.filterBox {
+    padding: 1rem 0;
+}
+
+.searchBox {
+    margin: 2rem 0;
 }
 
 /* PRODUCT - CardImage COLUMN */
@@ -971,17 +750,17 @@ li.ant-menu-item.ant-menu-item-selected::after {
 }
 
 .CardItem > div * > .CardItemImg {
-  display: flex;
-  -webkit-justify-content: center;
-  -moz-justify-content: center;
-  -ms-justify-content: center;
-  justify-content: center;
-  -webkit-align-items: center;
-  -moz-align-items: center;
-  -ms-align-items: center;
-  align-items: center;
-  width: 100%;
-  overflow: hidden;
+    display: flex;
+    -webkit-justify-content: center;
+    -moz-justify-content: center;
+    -ms-justify-content: center;
+    justify-content: center;
+    -webkit-align-items: center;
+    -moz-align-items: center;
+    -ms-align-items: center;
+    align-items: center;
+    width: 100%;
+    overflow: hidden;
 }
 
 .CardItem > .CardItemRow {
@@ -995,13 +774,15 @@ li.ant-menu-item.ant-menu-item-selected::after {
 
 @media screen and (max-width: 1280px) {
     .CardItem {
+        width: 100%;
         height: 25rem;
     }
+}
 
-    .ant-card-cover {
-        height: 20rem;
-        overflow: hidden;
-    }    
+@media screen and (max-width: 768px) {
+    .CardItem:nth-child(n+1) {
+        padding-right: 0;
+    }       
 }
 
 /* Card Image Hover animation */

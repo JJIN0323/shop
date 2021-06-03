@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import LeftMenu from './Sections/LeftMenu'
 import RightMenu from './Sections/RightMenu'
 import { Drawer, Button } from 'antd'
+import { BiMenu } from 'react-icons/bi'
 import logo from './logo.png'
 import './Sections/Navbar.css'
 
@@ -34,7 +35,7 @@ function NavBar() {
           type='primary'
           onClick={showDrawer}
         >
-          <span className='hamburger'></span>
+          <BiMenu />
         </Button>
         <Drawer
           title=''
