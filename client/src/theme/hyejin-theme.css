@@ -4624,9 +4624,14 @@ a.ant-btn-sm {
 }
 @media screen and (max-width: 1280px) {
   .ant-carousel .slick-vertical .slick-slide > * > img {
-      width: auto;
+      width: auto !important;
       height: 100vh;
   }    
+}
+
+@media screen and (max-width: 763px) {
+
+  
 }
 .ant-carousel .slick-list .slick-slide.slick-active input.ant-radio-input,
 .ant-carousel .slick-list .slick-slide.slick-active input.ant-checkbox-input {
@@ -15620,7 +15625,7 @@ textarea.ant-mentions {
 }
 .ant-menu-item:active,
 .ant-menu-submenu-title:active {
-  background: #736d6c;
+  background: #ffffff;
 }
 .ant-menu-submenu .ant-menu-sub {
   cursor: initial;
@@ -15679,7 +15684,7 @@ textarea.ant-mentions {
   color: #333333;
 }
 .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-  background-color: #736d6c;
+  background-color: #ffffff;
 }
 .ant-menu-inline,
 .ant-menu-vertical,
@@ -15971,7 +15976,7 @@ textarea.ant-mentions {
   top: 0;
   right: 0;
   bottom: 0;
-  border-right: 3px solid #333333;
+  border-right: 0;
   transform: scaleY(0.0001);
   opacity: 0;
   transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1), opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);

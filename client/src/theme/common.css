@@ -734,10 +734,18 @@ nav.header > .menu > .mobileMenu {
     margin: 2rem 0;
 }
 
+.noCard {
+    width: 100%;
+    padding-top: 10rem;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #7f7e7b;
+}
+
 /* PRODUCT - CardImage COLUMN */
 
-.CardItem {
-    height: 30rem;
+.CardItem, .ant-card {
+    height: 35rem;
     margin-bottom: 2rem;
 }
 
@@ -773,76 +781,47 @@ nav.header > .menu > .mobileMenu {
 }
 
 @media screen and (max-width: 1280px) {
-    .CardItem {
+    .CardItem, .ant-card {
         width: 100%;
         height: 25rem;
     }
+
+    .CardItem > div * > .CardItemImg {
+        height: 19rem;
+    }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 980px) {
     .CardItem:nth-child(n+1) {
+        padding-right: 1rem;
+    }
+    
+    .CardItem:nth-child(3n) {
         padding-right: 0;
     }       
 }
 
-/* Card Image Hover animation */
+/* ANT DESIGN */
 
-.description {
-    position: absolute;
-    left: 0;
-    right: 0;
-    top: 60%;
-    max-height: 28rem;
-    color: #ffffff;
-    padding: 1.2rem 1.2rem;
-    text-align: center;
-    transition: all 0.20s linear 0s;
-    -o-transition: all 0.20s linear 0s;
-    -ms-transition: all 0.20s linear 0s;
-    -moz-transition: all 0.20s linear 0s;
-    -webkit-transition: all 0.20s linear 0s;
-    transform: translateY(-50%);
-    -o-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -moz-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    overflow: hidden;
+.ant-carousel .slick-vertical .slick-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.description > p {
-    font-size: 1.2rem;
-    font-weight: 500;
+.ant-carousel-vertical .slick-dots li.slick-active button {
+    width: 0.5rem;
+    height: 1.5rem;
 }
 
-.description > span {
-    font-size: 0.8rem;
-    font-weight: 300;
-    height: 28rem;
-    letter-spacing: 0.1rem;
+.ant-card-cover {
+    height: 29rem;
 }
 
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    transition: all 0.20s linear 0s;
-    -o-transition: all 0.20s linear 0s;
-    -ms-transition: all 0.20s linear 0s;
-    -moz-transition: all 0.20s linear 0s;
-    -webkit-transition: all 0.20s linear 0s;
-    transform-style: preserve-3d;
-    -o-transform-style: preserve-3d;
-    -ms-transform-style: preserve-3d;
-    -moz-transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-    background: rgba(228, 166, 0, 1);
-    cursor: pointer;
-}
-
-.overlay:hover > .description {
-    top: 50%;
+@media screen and (max-width: 1280px) {
+    .ant-card-cover {
+        height: 19rem;
+    }
 }
 
 /* DETAIL - MOVIE INFO */

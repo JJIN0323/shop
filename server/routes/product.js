@@ -114,4 +114,22 @@ router.post('/products', (req, res) => {
     }
 })
 
+router.get('/products_by_id', (req, res) => {
+
+    let type = req.query.type
+    let productId = req.query.id
+
+    // productId를 DB에서 찾고, 같은 Id를 가진 상품을 가져옴
+    Product.find({_id: productId})
+    .populate('writer')
+    .exec((err, product) => {
+        if (err) return res.status(400).send(err)
+        return res.status(200).json({
+            success: true,
+            product
+        })
+    })
+
+})
+
 module.exports = router

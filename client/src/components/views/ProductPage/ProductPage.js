@@ -68,16 +68,20 @@ function ProductPage() {
 
     const renderCards = Products.map((product, index) => {
 
-        return <Col lg={6} md={8} sm={24} key={index} className='CardItem'>
+        //const priceKRW = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") // {`${priceKRW}`}
+
+        return <Col lg={6} md={8} sm={8} xs={24} key={index} className='CardItem'>
             
             <Card
                 cover={<a href={`/product/shop/${product._id}`} >
                           <img className='CardItemImg' src={`http://localhost:5000/${product.images[0]}`} alt={product.subject} />
                       </a>}>
-                    <Meta title={product.subject} description={`KRW ${product.price}`} />
+                    <Meta title={product.subject} description={product.productDetail} />
             </Card>
         </Col>
     })
+
+    //console.log('renderCards', renderCards)
 
     const showFilteredResults = (filters) => {
 
@@ -135,7 +139,6 @@ function ProductPage() {
         setSkip(0)
         setSearchTerm(newSearchTerm)
         getProducts(body)
-
     }
 
     return (
@@ -158,9 +161,10 @@ function ProductPage() {
             <SearchFeauter refreshFunction={updateSearchTerm} />
 
             {/* CARDS - Helper method를 이용해서 function을 불러옴 */}
-            <Row>
-                {renderCards}
-            </Row>
+            { renderCards[0] ? <Row>
+                                  {renderCards}
+                               </Row> : <div className='noCard'>No search result</div> }
+            
 
             {/* MORE BUTTON */}
             {PostAmount >= Limit && 
