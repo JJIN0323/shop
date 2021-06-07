@@ -10,7 +10,8 @@ function ProductImage(props) {
             
             let images = []
             
-            props.detail.images.map(item => {
+            // 반환된 배열을 사용하지 않기 때문에, map() 대신 forEach()를 사용
+            props.detail.images.forEach(item => {
                 images.push({
                     original: `http://localhost:5000/${item}`
                 })

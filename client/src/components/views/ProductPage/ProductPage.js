@@ -70,11 +70,11 @@ function ProductPage() {
 
         //const priceKRW = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") // {`${priceKRW}`}
 
-        return <Col lg={6} md={8} sm={8} xs={24} key={index} className='CardItem'>
+        return <Col lg={6} md={8} sm={8} xs={24} key={index} className='cardItem'>
             
             <Card
                 cover={<a href={`/product/shop/${product._id}`} >
-                          <img className='CardItemImg' src={`http://localhost:5000/${product.images[0]}`} alt={product.subject} />
+                          <img className='cardItemImg' src={`http://localhost:5000/${product.images[0]}`} alt={product.subject} />
                       </a>}>
                     <Meta title={product.subject} description={product.productDetail} />
             </Card>

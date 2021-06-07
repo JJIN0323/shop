@@ -39,6 +39,15 @@ const productSchema = mongoose.Schema({
     views: {
         type: Number,
         default: 0
+    },
+    color: {
+        type: String
+    },
+    material : {
+        type: String
+    },
+    weight: {
+        type: String
     }
 }, { timestamps: true })
 

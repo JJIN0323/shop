@@ -24,6 +24,9 @@ function UploadProductPage(props) {
     const [Subject, setSubject] = useState('')
     const [ProductDetail, setProductDetail] = useState('')
     const [Price, setPrice] = useState(0)
+    const [Color, setColor] = useState('')
+    const [Material, setMaterial] = useState('')
+    const [Weight, setWeight] = useState('')
     const [CategoryValue, setCategoryValue] = useState(1)
     // eslint-disable-next-line no-unused-vars
     const [UploadImages, setUploadImages] = useState([])
@@ -38,6 +41,18 @@ function UploadProductPage(props) {
 
     const PriceChangeHandler = (event) => {
         setPrice(event.currentTarget.value)
+    }
+
+    const ColorChangeHandler = (event) => {
+        setColor(event.currentTarget.value)
+    }
+
+    const MaterialChangeHandler = (event) => {
+        setMaterial(event.currentTarget.value)
+    }
+
+    const WeightChangeHandler = (event) => {
+        setWeight(event.currentTarget.value)
     }
 
     const CategoryValueChangeHandler = (event) => {
@@ -65,6 +80,9 @@ function UploadProductPage(props) {
             subject: Subject,
             productDetail: ProductDetail,
             price: Price,
+            color: Color,
+            material: Material,
+            weight: Weight,
             optionTypes: OptionTypes,
             images: UploadImages
         }
@@ -103,6 +121,30 @@ function UploadProductPage(props) {
                   id='price'
                   onChange={PriceChangeHandler}
                   value={Price} />
+              </Form.Item>
+
+              <Form.Item>
+                <p className='formLable'>Color</p>
+                <Input
+                  id='color'
+                  onChange={ColorChangeHandler}
+                  value={Color} />
+              </Form.Item>
+
+              <Form.Item>
+                <p className='formLable'>Meterial</p>
+                <Input
+                  id='meterial'
+                  onChange={MaterialChangeHandler}
+                  value={Material} />
+              </Form.Item>
+
+              <Form.Item>
+                <p className='formLable'>Weight</p>
+                <Input
+                  id='weight'
+                  onChange={WeightChangeHandler}
+                  value={Weight} />
               </Form.Item>
 
               <Form.Item>

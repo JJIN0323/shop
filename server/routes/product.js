@@ -26,8 +26,7 @@ router.post('/images', auth, (req, res) => {
         return res.json({
             success: true,
             image: res.req.file.path,
-            fileName: res.req.file.filename,
-            message: 'success!'
+            fileName: res.req.file.filename
         })
     })
 })
@@ -41,8 +40,7 @@ router.post('/', (req, res) => {
     product.save((err) => {
         if (err) return res.json({ success: false, err })
         return res.json({
-            success: true,
-            message: 'success'
+            success: true
         })
     })
 })
@@ -118,10 +116,13 @@ router.get('/products_by_id', (req, res) => {
 
     let type = req.query.type
     let productId = req.query.id
+    let count = { $inc: { views: 1 }}
 
     // productId를 DB에서 찾고, 같은 Id를 가진 상품을 가져옴
     Product.find({_id: productId})
     .populate('writer')
+    // https://stackoverflow.com/questions/8621948/using-inc-to-increment-a-document-property-with-mongoose/8646486
+    //.updateOne(count)
     .exec((err, product) => {
         if (err) return res.status(400).send(err)
         return res.status(200).json({
@@ -129,7 +130,24 @@ router.get('/products_by_id', (req, res) => {
             product
         })
     })
+})
 
+router.post('/products_by_id', (req, res) => {
+
+    let productId = req.query.id
+    let count = { $inc: { views: 1 }}
+
+    Product.find({_id: productId})
+    .updateOne(count)
+    .exec((err, views) => {
+        if (err) return res.status(400).send(err)
+        return res.status(200).json({
+            success: true
+            // views
+            // https://velog.io/@nj_pk/mongoose-error-findOneAndUpdate-inc%EA%B0%80-%EB%91%90%EB%B0%B0%EB%A1%9C-%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81
+            // front에서 한번 실행되기 때문에, views를 넣으면 query가 2번 실행됨
+        })
+    })
 })
 
 module.exports = router
