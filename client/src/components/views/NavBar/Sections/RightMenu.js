@@ -1,20 +1,24 @@
 /* eslint-disable jsx-a11y/anchor-is-valid */
 import React from 'react'
-import { Menu } from 'antd'
-import axios from 'axios'
+import { useSelector } from 'react-redux'
 import { USER_SERVER } from '../../../Config'
 import { withRouter } from 'react-router-dom'
-import { useSelector } from 'react-redux'
+import { Menu, Badge, message } from 'antd'
+import { BsBag } from 'react-icons/bs'
+import axios from 'axios'
 
 function RightMenu(props) {
+
   const user = useSelector(state => state.user)
+
+  //console.log('CART DATA', user.userData)
 
   const logoutHandler = () => {
     axios.get(`${USER_SERVER}/logout`).then(response => {
       if (response.status === 200) {
         props.history.push('/login')
       } else {
-        alert('Log Out Failed')
+        message.error('SignOut Failed.')
       }
     })
   }
@@ -37,6 +41,13 @@ function RightMenu(props) {
         {/* Authentication을 거쳐 로그인 한 유저만 볼 수 있는 메뉴 */}
         <Menu.Item key='upload'>
           <a href='/product/upload'>Upload</a>
+        </Menu.Item>
+        <Menu.Item key='cart'>
+          <a href='/user/cart'>
+            <Badge count={user.userData && user.userData.cart.length}>
+              <BsBag className='cartIcon' />
+            </Badge>
+          </a>
         </Menu.Item>
         <Menu.Item key='logout'>
           <a onClick={logoutHandler}>Logout</a>

@@ -65,7 +65,7 @@ router.post('/products', (req, res) => {
 
             findArgs[key] = req.body.filters[key]
 
-            if (key === 'priceList') {
+            if (key === 'price') {
                 findArgs[key] = {
                     // MongoDB 비교연산자 : ~이상
                     $gte: req.body.filters[key][0],
@@ -115,18 +115,26 @@ router.post('/products', (req, res) => {
 router.get('/products_by_id', (req, res) => {
 
     let type = req.query.type
-    let productId = req.query.id
-    let count = { $inc: { views: 1 }}
+    let productIds = req.query.id
+
+    if (type === 'array') {
+
+        // id=12414345, 34535435435, 1235687 type='array' 를
+        // productIds = ['12414345', '34535435435', '1235687'] 이렇게 바꿔줌
+        let ids = req.query.id.split(',')
+        
+        productIds = ids.map(item => {
+            return item
+        })
+    }
 
     // productId를 DB에서 찾고, 같은 Id를 가진 상품을 가져옴
-    Product.find({_id: productId})
+    Product.find({_id: { $in: productIds }})
     .populate('writer')
-    // https://stackoverflow.com/questions/8621948/using-inc-to-increment-a-document-property-with-mongoose/8646486
-    //.updateOne(count)
     .exec((err, product) => {
         if (err) return res.status(400).send(err)
         return res.status(200).json({
-            success: true,
+            success: true, 
             product
         })
     })
@@ -134,10 +142,10 @@ router.get('/products_by_id', (req, res) => {
 
 router.post('/products_by_id', (req, res) => {
 
-    let productId = req.query.id
+    let productIds = req.query.id
     let count = { $inc: { views: 1 }}
 
-    Product.find({_id: productId})
+    Product.find({_id: productIds})
     .updateOne(count)
     .exec((err, views) => {
         if (err) return res.status(400).send(err)

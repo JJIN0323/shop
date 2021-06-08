@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import Dropzone from 'react-dropzone'
 import axios from 'axios'
+import { message } from 'antd'
 import { AiOutlineDelete } from 'react-icons/ai'
 import { BsCloudUpload } from 'react-icons/bs'
 
@@ -28,7 +29,7 @@ function FileUpload(props) {
                 props.refreshFunction([...UploadImages, response.data.image])
                 
             } else {
-                alert('ERROR')
+                message.error('Error.')
             }
         })
     }
@@ -44,7 +45,7 @@ function FileUpload(props) {
         // UploadProductPage 컴포넌트에 이미지 삭제 전달
         props.refreshFunction(newImages)
 
-        alert('Are you sure you want to delete it?')
+        message.error('Are you sure you want to delete it?')
 
         setUploadImages(newImages)
     }

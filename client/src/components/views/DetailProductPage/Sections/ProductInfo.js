@@ -1,18 +1,37 @@
 import React from 'react'
-import { Button } from 'antd'
+import { withRouter } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { addToCart } from '../../../../_actions/user_actions'
+import { Button, message } from 'antd'
 
 function ProductInfo(props) {
 
-    const salePrice = props.detail.price * 0.9
-    const totalPrice = salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+    const renderPrice = () => {
+        const salePrice = props.detail.price * 0.9
+        const totalPrice = salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
+        //console.log('price ', totalPrice)
 
-    const CartHandler = (event) => {
+        return totalPrice
+    }
 
+    const dispatch = useDispatch()
+
+    const CartHandler = () => {
+
+        // Redux를 이용해서, 필요한 정보를 Cart field에 저장
+        dispatch(addToCart(props.detail._id)).then(response => {
+            if (response.payload.length > 0 ) {
+                props.history.push('/user/cart')
+                //console.log('success', response.payload)
+            } else {
+                message.error('Sign In is required.')
+                //console.log('error', response.payload)
+            }
+        })
     }
 
     return (
         <div className='productInfo'>
-
             <div className='productTitle'>
                 {props.detail.subject}
             </div>
@@ -20,7 +39,7 @@ function ProductInfo(props) {
                 {props.detail.price}
                 </div>
             <div className='productSalePrice'>
-                {`${totalPrice}`}
+                {renderPrice()}
             </div>
 
             <div className='productOptions'>
@@ -54,4 +73,4 @@ function ProductInfo(props) {
     )
 }
 
-export default ProductInfo
+export default withRouter(ProductInfo)

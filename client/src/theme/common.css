@@ -524,7 +524,69 @@ dl dd {
     display: table-cell;
     font-weight: 400;
     padding: 0.1rem 1.8rem;
-} /* color: #adadad; */
+}
+
+/* Table */
+
+.table-wrapper {
+    -webkit-overflow-scrolling: touch;
+    overflow-x: auto;
+}
+
+table {
+    margin: 0 0 2em 0;
+    width: 100%;
+}
+
+table tbody {
+    display: table-row-group;
+}
+
+table tbody tr {
+    display: table-row;
+    border: 1px solid #e2dfd9;
+    border-left: 0;
+    border-right: 0;
+}
+
+table td {
+    padding: 0.75em 0.75em;
+    vertical-align: middle;
+}
+
+table td:first-child {
+    width: 7rem;
+    padding-left: 2rem;
+}
+
+table td:first-child > .cartImg {
+    display: flex;
+    align-items: center;
+    width: 7rem;
+    height: 5rem;
+    overflow: hidden;
+}
+
+table td:first-child > * > img {
+    width: 7rem;
+    vertical-align: middle;
+}
+
+table td:nth-child(n + 3) {
+    text-align: center;
+}
+
+table th {
+    color: #333333;
+    font-size: 1rem;
+    padding: 1.2rem 0.7rem;
+    text-align: center;
+}
+
+table thead {
+    border-top: 2px solid #333333;
+    border-bottom: 1px solid #e2dfd9;
+}
 
 /* INPUT // BUTTON */
 
@@ -540,12 +602,12 @@ button,
     -ms-transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     transition: background-color 0.2s ease-in-out, color 0.2s ease-in-out;
     background-color: transparent;
-    border: 0;
+    border: 1px solid #7f7e7b;
     cursor: pointer;
     display: inline-block;
     font-family: inherit;
     letter-spacing: 0.075em;
-    padding: 0 2.25em;
+    padding: 0.3rem 2.25em;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
@@ -602,17 +664,27 @@ button.grayButton:active,
 nav.header {
     position: fixed;
     width: 100%;
-    height: 5em;
-    line-height: 5em;
+    height: 5.5em;
+    line-height: 5.5em;
     z-index: 100;
     padding: 0 2em;
     background: transparent;
     overflow: hidden;
 }
 
+nav.header.scroll {
+    transition: background 1.2s;
+}
+
+nav.header.scroll:hover {
+    background: #ffffff;
+}
+
 @media screen and (max-width: 980px) { 
     nav.header {
-        padding: 1rem 2.5rem 0 2.5rem;
+        height: 7rem;
+        line-height: 7rem;
+        padding: 1rem 2.5rem;
     }
 }
 
@@ -661,6 +733,13 @@ nav.header > .menu > .mobileMenu {
     nav.header > .menu > .menuRight {
         display: none;
     }
+}
+
+/* CART ICON */
+
+.cartIcon {
+    margin-bottom: -0.3rem;
+    font-size: 1.5rem;
 }
 
 /* INDEX */
@@ -743,9 +822,9 @@ nav.header > .menu > .mobileMenu {
     margin: 2rem 0;
 }
 
-.noCard {
+.noMessage {
     width: 100%;
-    padding-top: 10rem;
+    padding: 10rem 0;
     text-align: center;
     font-size: 1.5rem;
     color: #7f7e7b;
@@ -754,11 +833,11 @@ nav.header > .menu > .mobileMenu {
 /* PRODUCT - CardImage COLUMN */
 
 .cardItem, .ant-card {
-    height: 35rem;
+    height: 32rem;
     margin-bottom: 2rem;
 }
 
-.cardItem:nth-child(n+1) {
+.cardItem:nth-child(n + 1) {
     padding-right: 1rem;
 }
 
@@ -777,7 +856,6 @@ nav.header > .menu > .mobileMenu {
     -ms-align-items: center;
     align-items: center;
     width: 100%;
-    overflow: hidden;
 }
 
 .cardItem > .cardItemRow {
@@ -810,6 +888,15 @@ nav.header > .menu > .mobileMenu {
     }       
 }
 
+@media screen and (max-width: 763px) {
+    .cardItem:nth-child(n+1) {
+        padding-right: 1rem;
+    }
+    
+    .cardItem:nth-child(2n) {
+        padding-right: 0;
+    }       
+}
 /* ANT DESIGN */
 
 .ant-carousel .slick-vertical .slick-slide {
@@ -824,7 +911,7 @@ nav.header > .menu > .mobileMenu {
 }
 
 .ant-card-cover {
-    height: 29rem;
+    height: 26rem;
 }
 
 @media screen and (max-width: 1280px) {
@@ -836,7 +923,7 @@ nav.header > .menu > .mobileMenu {
 /* DETAIL - PRODUCT INFO */
 
 .productInfo {
-    padding: 2rem 0 0 3rem;
+    padding: 0 0 0 3rem;
 }
 
 .productTitle {
@@ -878,6 +965,12 @@ nav.header > .menu > .mobileMenu {
     font-size: 1rem;
 }
 
+@media screen and (max-width: 980px) {
+    .productInfo {
+        padding: 2rem 0 0 0;
+    }    
+}
+
 /* IMAGE GALLERY */
 
 .image-gallery-thumbnails-wrapper {
@@ -890,15 +983,30 @@ nav.header > .menu > .mobileMenu {
     }
 }
 
+/* CART */
+
+.cartTotal {
+    padding: 0.5rem 2rem;
+    font-size: 1.2rem;
+    text-align: right;
+}
+
+.cartTotalPrice {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.cartTotalPrice::after {
+    content: '원';
+    font-size: 1rem;
+}
+
 /* FOOTER */
 
 .footer {
-    position: fixed;
-    bottom: 0;
     width: 100%;
-    padding: 0.2rem 0;
+    padding: 1rem 0;
     text-align: center;
     color: #7f7e7b;
-    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255, 0.5) 50%, rgba(255,255,255,0) 100%);
 }
 

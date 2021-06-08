@@ -4,7 +4,7 @@ import { categoryList, price } from './Sections/Datas'
 import Category from './Sections/Category'
 import Price from './Sections/Price'
 import SearchFeauter from './Sections/SearchFeauter'
-import { Card, Row, Col, Button} from 'antd'
+import { Card, Row, Col, Button, message } from 'antd'
 
 function ProductPage() {
 
@@ -47,7 +47,7 @@ function ProductPage() {
                 setPostAmount(response.data.postAmount)
                 //console.log(response.data)                
             } else {
-                alert('Failed to load product list.')
+                message.error('Failed to load product list.')
             }
         })
     }
@@ -70,7 +70,7 @@ function ProductPage() {
 
         //const priceKRW = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") // {`${priceKRW}`}
 
-        return <Col lg={6} md={8} sm={8} xs={24} key={index} className='cardItem'>
+        return <Col lg={6} md={8} sm={12} xs={24} key={index} className='cardItem'>
             
             <Card
                 cover={<a href={`/product/shop/${product._id}`} >
@@ -162,8 +162,8 @@ function ProductPage() {
 
             {/* CARDS - Helper method를 이용해서 function을 불러옴 */}
             { renderCards[0] ? <Row>
-                                  {renderCards}
-                               </Row> : <div className='noCard'>No search result</div> }
+                {renderCards}
+            </Row> : <div className='noMessage'>No search result</div> }
             
 
             {/* MORE BUTTON */}

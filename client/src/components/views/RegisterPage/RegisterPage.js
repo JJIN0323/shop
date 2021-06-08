@@ -4,28 +4,23 @@ import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { registerUser } from '../../../_actions/user_actions'
 import { useDispatch } from 'react-redux'
-
-import {
-  Form,
-  Input,
-  Button,
-} from 'antd'
+import { Form, Input, Button, message } from 'antd'
 
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
+    sm: { span: 8 }
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
-  },
+    sm: { span: 8 }
+  }
 }
 const buttonLayout = {
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
-  },
+    sm: { span: 8 }
+  }
 }
 
 function RegisterPage(props) {
@@ -68,9 +63,9 @@ function RegisterPage(props) {
 
           dispatch(registerUser(dataToSubmit)).then(response => {
             if (response.payload.success) {
-              props.history.push('/login')
+                props.history.push('/login')
             } else {
-              alert(response.payload.err.errmsg)
+                message.error(response.payload.err.errmsg)
             }
           })
 

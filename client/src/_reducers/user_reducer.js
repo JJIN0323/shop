@@ -2,7 +2,10 @@ import {
     LOGIN_USER,
     REGISTER_USER,
     AUTH_USER,
-    LOGOUT_USER
+    LOGOUT_USER,
+    ADD_TO_CART,
+    GET_CART_ITEMS,
+    REMOVE_CART_ITEM
 } from '../_actions/types'
  
 export default function userReducer(state={},action){
@@ -13,8 +16,18 @@ export default function userReducer(state={},action){
             return { ...state, loginSucces: action.payload }
         case AUTH_USER:
             return {...state, userData: action.payload }
+            // router/users.js 에서 가져온 auth 정보를 payload
         case LOGOUT_USER:
             return {...state }
+        case ADD_TO_CART:
+            return {...state, userData: { ...state.userData, cart: action.payload }}
+            // router/users.js 에서 가져온 cart 정보를 payload
+        case GET_CART_ITEMS:
+            return {...state, cartDetail: action.payload }
+            // user_actions.js 에서 가져온 response.data를 payload
+        case REMOVE_CART_ITEM:
+            return {...state, cartDetail: action.payload.productInfo,
+                    userData: { ...state.userData, cart: action.payload.cart }}
         default:
             return state
     }

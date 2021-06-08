@@ -9,12 +9,12 @@ import { useDispatch } from 'react-redux'
 const formItemLayout = {
   labelCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
+    sm: { span: 8 }
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 8 },
-  },
+    sm: { span: 8 }
+  }
 }
 
 function LoginPage(props) {
@@ -137,7 +137,7 @@ function LoginPage(props) {
               <Form.Item>              
                 <Checkbox id='rememberMe' onChange={handleRememberMe} checked={rememberMe} >Remember me</Checkbox>
                 {/*
-                <a className='login-form-forgot' href='/reset_user' style={{ float: 'right' }}>
+                <a className='forgot' href='/reset_user' style={{ float: 'right' }}>
                   forgot password
                   </a>
                 */}

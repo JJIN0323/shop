@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import FileUpload from '../../utils/FileUpload'
-import { Form, Input, Button } from 'antd'
+import { Form, Input, Button, message } from 'antd'
 import axios from 'axios'
 
 const formItemLayout = {
     wrapperCol: {
       xs: { span: 12 },
-      sm: { span: 18 },
+      sm: { span: 18 }
     }
 }
 
@@ -14,7 +14,7 @@ function UploadProductPage(props) {
 
     const { TextArea } = Input
 
-    const OptionTypes = [
+    const CategoryList = [
         { key: 1, value: 'Chair' },
         { key: 2, value: 'Plant' },
         { key: 3, value: 'ETC' }
@@ -69,7 +69,7 @@ function UploadProductPage(props) {
         event.preventDefault()
 
         if(!Subject || !ProductDetail || !Price || !CategoryValue || !UploadImages) {
-            return alert('Please fill in all fields.')
+            return message.error('Please fill in all fields.')
         }
 
         // 적용된 필드의 값들을 서버에 Request로 보냄
@@ -83,17 +83,17 @@ function UploadProductPage(props) {
             color: Color,
             material: Material,
             weight: Weight,
-            optionTypes: OptionTypes,
+            categoryList: CategoryValue,
             images: UploadImages
         }
 
         axios.post('/api/product', fields)
         .then(response => {
             if(response.data.success) {
-                alert('Product upload was successful.')
+                message.success('Product upload was successful.')
                 props.history.push('/product/shop')
             } else {
-                alert('Product upload failed.')
+                message.error('Product upload failed.')
             }
         })
     }
@@ -158,7 +158,7 @@ function UploadProductPage(props) {
               <Form.Item>
                 <p className='formLable'>Category</p>
                 <select onChange={CategoryValueChangeHandler} value={CategoryValue}>
-                    {OptionTypes.map(item => (
+                    {CategoryList.map(item => (
                         <option key={item.key} value={item.key}>{item.value}</option>
                     ))}
                 </select>

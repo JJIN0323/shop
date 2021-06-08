@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { User } = require('../models/User')
+const { Product } = require('../models/Product')
 const { auth } = require('../middleware/auth')
 
 // 인증 성공시 보낼 데이터
@@ -14,6 +15,8 @@ router.get('/auth', auth, (req, res) => {
         lastname: req.user.lastname,
         role: req.user.role,
         image: req.user.image,
+        cart: req.user.cart,
+        history: req.user.history
     })
 })
 
@@ -70,6 +73,72 @@ router.get('/logout', auth, (req, res) => {
             success: true
         })
     })
+})
+
+router.post('/cart', auth, (req, res) => {
+    // User collection에서 User 정보를 가져옴
+    // req.user._id는 auth에서 token에 User 정보가 저장
+    // middleware/auth.js
+    User.findOne({ _id: req.user._id },
+        (err, userInfo) => {
+
+            let duplicate = false // 상품이 없음
+        
+            // 가져온 정보에서 상품이 이미 카트에 들어있는지 확인
+            userInfo.cart.forEach((item) => {
+                if (item.id === req.body.productId) {
+                    duplicate = true // 상품이 있음
+                }
+            })
+
+            // 상품이 있으면, quantity만 +1 해줌
+
+            if (duplicate) {
+                User.findOneAndUpdate({ _id: req.user._id, 'cart.id': req.body.productId },
+                { $inc: {'cart.$.quantity': 1} },
+                { new : true }, // update된 정보를 받기 위함
+                (err, userInfo) => {
+                    if (err) return res.status(200).send(err)
+                    return res.status(200).send(userInfo.cart)
+                }
+            )}
+            // 상품이 없으면, id, quantity, date를 push 해줌
+            else {
+                User.findOneAndUpdate({ _id: req.user._id},
+                { $push: { cart: {id: req.body.productId, quantity: 1, date: Date.now() }}},
+                { new : true },
+                (err, userInfo) => {
+                    if (err) return res.status(400).send(err)
+                    return res.status(200).send(userInfo.cart)
+                }
+            )}
+        })
+})
+
+router.get('/removeFromCart', auth, (req, res) => {
+
+    // 1. cart collection 안에 지우려고하는 상품을 지움
+    User.findOneAndUpdate({_id: req.user._id},
+        {'$pull': {'cart': { 'id': req.query.id }}},
+        {new: true},
+        (err, userInfo) => {
+            //if (err) return res.status(200).json({ success: false, err })
+            let cart = userInfo.cart
+            let array = cart.map(item => {
+                return item.id
+            })
+
+            // 2. product collection 안에 남아있는 상품들의 정보를 가져옴
+            Product.find({_id: {$in: array}})
+            .populate('writer')
+            .exec((err, productInfo) => {
+                return res.status(200).json({
+                    productInfo,
+                    cart
+                })
+            })
+        }
+    )    
 })
 
 module.exports = router

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useLayoutEffect } from 'react'
 import LeftMenu from './Sections/LeftMenu'
 import RightMenu from './Sections/RightMenu'
 import { Drawer, Button } from 'antd'
@@ -6,19 +6,35 @@ import { BiMenu } from 'react-icons/bi'
 import logo from './logo.png'
 
 function NavBar() {
+  
+const [visible, setVisible] = useState(false)
 
-  const [visible, setVisible] = useState(false)
-
-  const showDrawer = () => {
+const showDrawer = () => {
     setVisible(true)
-  }
+}
 
-  const onClose = () => {
+const onClose = () => {
     setVisible(false)
-  } 
+}
 
-  return (
-    <nav className='header'>
+const [scrolled, setScrolled] = useState(false)
+
+  useLayoutEffect(() => {
+
+    const handleScroll = (event) => {
+      setScrolled(window.scrollY > 0)
+    }
+    
+    window.addEventListener('scroll', handleScroll)
+    
+    return () => {
+        window.removeEventListener('scroll', handleScroll)
+    }
+
+  }, [])
+
+return (
+    <nav className={ scrolled ? 'header scroll' : 'header'}>
       <div className='logo'>
         <a href='/'><img src={logo} alt='logo' /></a>
       </div>

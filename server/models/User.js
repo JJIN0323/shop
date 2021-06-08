@@ -22,6 +22,14 @@ const userSchema = mongoose.Schema({
         type: String,
         minglength: 5
     },
+    cart: {
+        type: Array,
+        default: []
+    },
+    history: {
+        type: Array,
+        default: []
+    },
     role : {
         type:Number,
         default: 0 

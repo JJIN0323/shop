@@ -21,12 +21,6 @@ const productSchema = mongoose.Schema({
     productDetail: {
         type: String
     },
-    status: {
-        type: String
-    },
-    optionType: {
-        type: String
-    },
     categoryList: {
         type: Number,
         default: 1

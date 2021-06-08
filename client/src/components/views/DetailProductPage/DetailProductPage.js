@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import ProductImage from './Sections/ProductImage'
 import ProductInfo from './Sections/ProductInfo'
 import axios from 'axios'
-import { Row, Col } from 'antd'
+import { Row, Col, message } from 'antd'
 
 function DetailProductPage(props) {
 
@@ -19,7 +19,7 @@ function DetailProductPage(props) {
                 setProduct(response.data.product[0])
                 //console.log('response.data', response.data)
             } else {
-                alert('Failed to load product details.')
+                message.error('Failed to load product details.')
             }
         })
 
@@ -29,7 +29,7 @@ function DetailProductPage(props) {
                 setViews(response.data.product)
                 //console.log('response.data', response.data)
             } else {
-                alert('Failed.')
+                message.error('Failed to load view.')
             }
         })
     
