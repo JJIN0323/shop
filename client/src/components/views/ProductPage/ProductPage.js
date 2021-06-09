@@ -5,6 +5,7 @@ import Category from './Sections/Category'
 import Price from './Sections/Price'
 import SearchFeauter from './Sections/SearchFeauter'
 import { Card, Row, Col, Button, message } from 'antd'
+//import commaNumber from 'comma-number'
 
 function ProductPage() {
 
@@ -68,8 +69,6 @@ function ProductPage() {
 
     const renderCards = Products.map((product, index) => {
 
-        //const priceKRW = product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",") // {`${priceKRW}`}
-
         return <Col lg={6} md={8} sm={12} xs={24} key={index} className='cardItem'>
             
             <Card
@@ -77,6 +76,7 @@ function ProductPage() {
                           <img className='cardItemImg' src={`http://localhost:5000/${product.images[0]}`} alt={product.subject} />
                       </a>}>
                     <Meta title={product.subject} description={product.productDetail} />
+                                {/* description={commaNumber(product.price * 0.9)} */}
             </Card>
         </Col>
     })
@@ -143,8 +143,6 @@ function ProductPage() {
 
     return (
         <div className='container'>
-
-            <p className='subTitle'>interior decoration</p>
 
             {/* FILTERS - category & price */}
             <Row gutter={[16, 16]}>

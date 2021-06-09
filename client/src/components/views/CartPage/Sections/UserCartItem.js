@@ -1,5 +1,6 @@
 import React from 'react'
 import { Button } from 'antd'
+import commaNumber from 'comma-number'
 
 function UserCartItem(props) {
 
@@ -9,15 +10,6 @@ function UserCartItem(props) {
             let image = images[0]
             return `http://localhost:5000/${image}`
         }
-    }
-
-    // 10% 할인된 가격 및 원화표기
-    const renderPrice = (price) => {
-        const salePrice = price * 0.9
-        //console.log('price ', price)
-        const totalPrice = salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-
-        return totalPrice
     }
 
     const renderItems = () => (
@@ -34,7 +26,7 @@ function UserCartItem(props) {
                     </a>
                 </td>
                 <td>{product.quantity} EA</td>
-                <td>{renderPrice(product.price)}원</td>
+                <td>{commaNumber(product.price * 0.9)}원</td>
                 <td><Button onClick={() => props.removeProduct(product._id)}>Remove</Button></td>
             </tr>
         ))

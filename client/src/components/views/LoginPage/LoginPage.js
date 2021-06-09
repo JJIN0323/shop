@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import { loginUser } from '../../../_actions/user_actions'
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Form, Input, Button, Checkbox } from 'antd'
-import { useDispatch } from 'react-redux'
+import { AiOutlineUser, AiOutlineLock } from 'react-icons/ai'
 
 const formItemLayout = {
   labelCol: {
@@ -55,8 +56,10 @@ function LoginPage(props) {
             .then(response => {
               if (response.payload.loginSuccess) {
                 window.localStorage.setItem('userId', response.payload.userId)
+                //console.log('response.payload.userId ', response.payload.userId)
                 if (rememberMe === true) {
-                  window.localStorage.setItem('rememberMe', values.id)
+                  window.localStorage.setItem('rememberMe', values.email)
+                  //console.log('values.id ', values.email)
                 } else {
                   localStorage.removeItem('rememberMe')
                 }
@@ -97,7 +100,7 @@ function LoginPage(props) {
               <Form.Item required>
                 <Input
                   id='email'
-                  //prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<AiOutlineUser style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder='Email'
                   type='email'
                   value={values.email}
@@ -115,7 +118,7 @@ function LoginPage(props) {
               <Form.Item required>
                 <Input
                   id='password'
-                  //prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />}
+                  prefix={<AiOutlineLock style={{ color: 'rgba(0,0,0,.25)' }} />}
                   placeholder='Password'
                   type='password'
                   value={values.password}
@@ -135,7 +138,7 @@ function LoginPage(props) {
               )}
 
               <Form.Item>              
-                <Checkbox id='rememberMe' onChange={handleRememberMe} checked={rememberMe} >Remember me</Checkbox>
+                <Checkbox id='rememberMe' onChange={handleRememberMe} checked={rememberMe}>Remember me</Checkbox>
                 {/*
                 <a className='forgot' href='/reset_user' style={{ float: 'right' }}>
                   forgot password

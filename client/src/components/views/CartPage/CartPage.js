@@ -2,6 +2,8 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { getCartItems, removeCartItem } from '../../../_actions/user_actions'
 import UserCartItem from './Sections/UserCartItem'
+import Paypal from '../../utils/Paypal'
+import commaNumber from 'comma-number'
 
 function CartPage(props) {
 
@@ -36,9 +38,7 @@ function CartPage(props) {
             total += parseInt(itemPrice, 10) * item.quantity
         })
 
-        const totalPrice = total.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-
-        setTotal(totalPrice)
+        setTotal(commaNumber(total))
         setShowTotal(true)
     }
 
@@ -61,6 +61,9 @@ function CartPage(props) {
             <div className='cartTotal'>
                 ₩ <span className='cartTotalPrice'>{Total}</span>
             </div> : <div className='noMessage'>No products in the cart</div>}
+
+            {ShowTotal && <Paypal /> }
+            
 
         </div>
         

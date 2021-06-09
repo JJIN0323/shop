@@ -45,7 +45,7 @@ function FileUpload(props) {
         // UploadProductPage 컴포넌트에 이미지 삭제 전달
         props.refreshFunction(newImages)
 
-        message.error('Are you sure you want to delete it?')
+        message.error('Removed from upload file list.')
 
         setUploadImages(newImages)
     }

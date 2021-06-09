@@ -3,16 +3,9 @@ import { withRouter } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { addToCart } from '../../../../_actions/user_actions'
 import { Button, message } from 'antd'
+import commaNumber from 'comma-number'
 
 function ProductInfo(props) {
-
-    const renderPrice = () => {
-        const salePrice = props.detail.price * 0.9
-        const totalPrice = salePrice.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
-        //console.log('price ', totalPrice)
-
-        return totalPrice
-    }
 
     const dispatch = useDispatch()
 
@@ -36,10 +29,10 @@ function ProductInfo(props) {
                 {props.detail.subject}
             </div>
             <div className='productOriginalPrice'>
-                {props.detail.price}
+                {commaNumber(props.detail.price)}
                 </div>
             <div className='productSalePrice'>
-                {renderPrice()}
+                {commaNumber(props.detail.price * 0.9)}
             </div>
 
             <div className='productOptions'>

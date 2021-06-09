@@ -15,7 +15,7 @@ function Price(props) {
     }
 
     return (
-        <Radio.Group onChange={handleActive} value={Value}>
+        <Radio.Group onChange={handleActive} value={Value} className='alignRight'>
             {renderPriceList()}
         </Radio.Group>
     )
