@@ -1,7 +1,9 @@
 const express = require('express')
 const router = express.Router()
+const async = require('async')
 const { User } = require('../models/User')
 const { Product } = require('../models/Product')
+const { Payment } = require('../models/Payment')
 const { auth } = require('../middleware/auth')
 
 // 인증 성공시 보낼 데이터
@@ -120,7 +122,7 @@ router.get('/removeFromCart', auth, (req, res) => {
     // 1. cart collection 안에 지우려고하는 상품을 지움
     User.findOneAndUpdate({_id: req.user._id},
         {'$pull': {'cart': { 'id': req.query.id }}},
-        {new: true},
+        { new: true },
         (err, userInfo) => {
             //if (err) return res.status(200).json({ success: false, err })
             let cart = userInfo.cart
@@ -140,5 +142,80 @@ router.get('/removeFromCart', auth, (req, res) => {
         }
     )    
 })
+
+router.post('/successBuy', auth, (req, res) => {
+
+    // User collection에 history를 넣어줌
+    let history = []
+    let transactionData = {}
+
+    //console.log('cartDetail ', req.body.cartDetail)
+    
+    req.body.cartDetail.forEach((item) => {
+        history.push({
+            id: item._id,
+            productTitle: item.subject,
+            price: item.price,
+            quantity: item.quantity,
+            paymentId: req.body.paymentData.paymentID,
+            dateOfPurchase: Date.now()
+        })
+    })
+
+    // Payment collection에 자세한 결제 정보를 넣어줌 ( auth를 거쳐서 들어온 정보 )
+    transactionData.user = {
+        id: req.user._id,
+        name: req.user.name,
+        email: req.user.email
+    }
+
+    // CartPage 안에 paymentData에 정보를 가져옴
+    transactionData.data = req.body.paymentData
+    transactionData.product = history
+
+    User.findOneAndUpdate({ _id: req.user._id },
+        // User collection 안에 history에 저장
+        // history를 저장하고, cart는 비워줌
+        { $push: { history: history }, $set: { cart: [] }},
+        { new: true },
+        (err, user) => {
+            if (err) return res.status(400).json({ success: false, err })
+            
+            // Payment model에 transactionData 정보 저장
+            const payment = new Payment(transactionData)
+            payment.save((err, doc) => {
+                if (err) return res.status(400).json({ success: false, err })
+
+                // Product collection에 sold field 업데이트
+
+                // 각 상품마다 몇 개의 quantity를 구매했는지 정보
+                let products = []
+
+                doc.product.forEach(item => {
+                    // doc 안에 저장된 (payment.save(transactionData)에 'product' 부분) 정보를 가져와서,
+                    // products에 아래 정보를 배열로 넣어줌
+                    products.push({ id: item.id, quantity: item.quantity })
+                })
+
+                async.eachSeries(products, (item, callback) => {
+
+                    Product.updateOne({ _id: item.id },
+                        { $inc: { 'sold': item.quantity }},
+                        { new: false },
+                        callback
+                    )
+                }, (err) => {
+                    if (err) return res.status(400).json({ success: false, err })
+                    return res.status(200).json({
+                        success: true,
+                        cart: user.cart, // 179번째 줄, user collection 안에 cart 정보
+                        cartDetail: []
+                    })
+                })
+            })
+        }
+    )
+})
+
 
 module.exports = router
