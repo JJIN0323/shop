@@ -2,9 +2,9 @@
 
 ### npm run both
 
-# Server : Node 14.17.0
-# Front : React 16.8.6
-# DB : mongoDB
+# Server : Node
+# Front : React
+# DB : mongoDB Atlas
 
 ------------
 
