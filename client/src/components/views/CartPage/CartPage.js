@@ -4,6 +4,7 @@ import { getCartItems, removeCartItem, onSuccessBuy } from '../../../_actions/us
 import UserCartItem from './Sections/UserCartItem'
 import Paypal from '../../utils/Paypal'
 import commaNumber from 'comma-number'
+import { Button, message } from 'antd'
 
 function CartPage(props) {
 
@@ -37,10 +38,19 @@ function CartPage(props) {
         cartDetail.map(item => {
             const itemPrice = item.price * 0.9
             total += parseInt(itemPrice, 10) * item.quantity
+            return total
         })
 
         setTotal(commaNumber(total))
         setShowTotal(true)
+    }
+
+    const HistoryHandler = () => {
+        if (props.user.userData.history) {
+            props.history.push('/user/history')
+        } else {
+            message.error('Failed to get History Infomation.')
+        }
     }
 
     let removeFromCart = (productId) => {
@@ -66,19 +76,33 @@ function CartPage(props) {
         })
     }
 
+    //console.log('payment ', payment)
+
     return (
         <div className='container'>
 
-            <UserCartItem products={props.user.cartDetail && props.user.cartDetail.product} removeProduct={removeFromCart} />
+           {ShowSuccess ? <></> :
+            <UserCartItem products={props.user.cartDetail && props.user.cartDetail.product} removeProduct={removeFromCart} /> }
 
             {ShowTotal ? 
-            <div className='cartTotal'>
-                ₩ <span className='cartTotalPrice'>{Total}</span>
+            <div className='cartBtn'>
+                <Paypal total={Total} onSuccess={transactionSuccess} />
+                <div className='cartTotal'>
+                    ₩ <span className='cartTotalPrice'>{Total}</span>
+                </div>
             </div> 
-            : ShowSuccess ? <div>Success~!@!!!</div> :
-            <div className='noMessage'>No products in the cart</div>}
+            : ShowSuccess ? 
+            <div className='successMessage'>
+                Purchase Success
+                <span>What!!!!!!!!!!</span>
+                <p className='total'>{Total}</p>
+                <Button className='grayButton small' onClick={HistoryHandler}>HISTORY</Button>
+            </div>
+            : <div className='failMessage'>No products in the cart</div>}
+            
 
-            {ShowTotal && <Paypal total={Total} onSuccess={transactionSuccess} /> }
+            {/* {ShowTotal && <Paypal total={Total} onSuccess={transactionSuccess} /> } */}
+            
             
 
         </div>

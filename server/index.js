@@ -7,6 +7,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
 const config = require('./config/key')
+const moment = require('moment')
 
 // const mongoose = require('mongoose')
 // mongoose
@@ -24,6 +25,7 @@ const connect = mongoose.connect(config.mongoURI,
   .catch(err => console.log(err))
 
 app.use(cors())
+//app.use(moment().format('LL'))
 
 // 어플리케이션의 데이터를 분석해서 가져오기
 app.use(bodyParser.urlencoded({ extended: true }))

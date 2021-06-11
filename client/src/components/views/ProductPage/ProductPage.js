@@ -30,7 +30,7 @@ function ProductPage() {
         }
         getProducts(body)
         //console.log('getProducts', body)
-    }, [])
+    })
 
     const getProducts = (body) => {
         // 데이터베이스에 모든 정보를 가져옴
@@ -161,7 +161,7 @@ function ProductPage() {
             {/* CARDS - Helper method를 이용해서 function을 불러옴 */}
             { renderCards[0] ? <Row>
                 {renderCards}
-            </Row> : <div className='noMessage'>No search result</div> }
+            </Row> : <div className='failMessage'>No search result</div> }
             
 
             {/* MORE BUTTON */}

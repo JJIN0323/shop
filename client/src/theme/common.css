@@ -127,23 +127,6 @@ p.subTitle {
     letter-spacing: 0.1rem;
 }
 
-p.subject {
-    font-size: 3rem;
-    font-weight: 100;
-    text-align: center;
-    padding: 0;
-    margin: 0;
-    letter-spacing: 0.1rem;
-}
-
-p.overview {
-    font-size: 1.2rem;
-    font-weight: 300;
-    text-align: center;
-    color: #000000;
-    padding: 0 1rem;
-}
-
 p.formLable {
     font-size: 1.1rem;
     color: #777777;
@@ -155,27 +138,10 @@ p.formLable {
 
 .title {
     color: #282828;
-    font-weight: 300;
-    font-size: 3rem;
+    font-size: 2rem;
     text-align: center;
     padding: 0 0 2rem 0;
-}
-
-.thinTitle {
-    color: #282828;
-    font-weight: 100;
-    font-size: 4rem;
-    text-align: center;
-    padding: 0;
-    letter-spacing: 0.1rem;
-}
-
-@media screen and (max-width: 480px) {
-    .thinTitle {
-        font-size: 2rem;
-        font-weight: 200;
-        letter-spacing: 0;
-    }    
+    letter-spacing: 0.4rem;
 }
 
 /* WRAP */
@@ -542,6 +508,10 @@ table tbody {
     display: table-row-group;
 }
 
+table tbody.textCenter {
+    text-align: center;
+}
+
 table tbody tr {
     display: table-row;
     border: 1px solid #e2dfd9;
@@ -552,6 +522,11 @@ table tbody tr {
 table td {
     padding: 0.75em 0.75em;
     vertical-align: middle;
+}
+
+table td.price::before {
+    content: '₩ ';
+    font-size: 0.5rem;
 }
 
 table td:first-child {
@@ -644,6 +619,14 @@ button.grayButton,
     border-radius: 0;
 }
 
+input[type="button"].grayButton.small,
+button.grayButton.small,
+.button.grayButton.small {
+    width: 10rem;
+    height: 2.5rem;
+    line-height: 1.5rem;
+}
+
 input[type="button"].grayButton:hover,
 input[type="button"].grayButton:focus,
 input[type="button"].grayButton:active,
@@ -673,11 +656,8 @@ nav.header {
 }
 
 nav.header.scroll {
-    transition: background 1.2s;
-}
-
-nav.header.scroll:hover {
     background: #ffffff;
+    transition: background 1.2s;
 }
 
 @media screen and (max-width: 980px) { 
@@ -822,12 +802,45 @@ nav.header > .menu > .mobileMenu {
     margin: 2rem 0;
 }
 
-.noMessage {
+/* MESSAGE */
+
+.failMessage {
     width: 100%;
     padding: 10rem 0;
     text-align: center;
     font-size: 1.5rem;
     color: #7f7e7b;
+}
+
+.successMessage {
+    width: 100%;
+    padding: 6rem 0 4rem 0;
+    text-align: center;
+    font-size: 2rem;
+    color: #7f7e7b;
+    border: 1px solid #e7e7e5;
+}
+
+.successMessage > span {
+    display: block;
+    font-size: 0.9rem;
+    line-height: 2rem;
+}
+
+.successMessage > .total {
+    display: block;
+    font-size: 1.2rem;
+    padding: 1rem 0;
+    letter-spacing: -0.04rem;
+}
+
+.successMessage > .total::before {
+    content: '₩ ';
+    font-size: 0.9rem;
+}
+
+.successMessage > button {
+    font-size: 1rem;
 }
 
 /* PRODUCT - CardImage COLUMN */
@@ -985,10 +998,16 @@ nav.header > .menu > .mobileMenu {
 
 /* CART */
 
+.cartBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
 .cartTotal {
     padding: 0.5rem 2rem;
     font-size: 1.2rem;
-    text-align: right;
+    float: right;
 }
 
 .cartTotalPrice {

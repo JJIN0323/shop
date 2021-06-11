@@ -44,8 +44,7 @@ function RightMenu(props) {
         </Menu.Item>
         <Menu.Item key='cart'>
           <a href='/user/cart'>
-            <Badge count={1}>
-            {/* {user.userData && user.userData.cart.length ? user.userData && user.userData.cart.length : {} } */}
+            <Badge count={user.userData && user.userData.cart ? user.userData.cart.length : '' }>
               <BsBag className='cartIcon' />
             </Badge>
           </a>

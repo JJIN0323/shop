@@ -14,7 +14,8 @@ function ProductInfo(props) {
         // Redux를 이용해서, 필요한 정보를 Cart field에 저장
         dispatch(addToCart(props.detail._id)).then(response => {
             if (response.payload.length > 0 ) {
-                props.history.push('/user/cart')
+                //props.history.push('/user/cart')
+                message.success('Add to Cart Success.')
                 //console.log('success', response.payload)
             } else {
                 message.error('Sign In is required.')
@@ -58,10 +59,9 @@ function ProductInfo(props) {
                 {props.detail.productDetail}
             </div>
 
-            <div className=''>
-                <Button className='grayButton' onClick={CartHandler}>ADD TO CART</Button>
-                {/* <Button>BUY IT NOW</Button> */}
-            </div>
+            <Button className='grayButton' onClick={CartHandler}>ADD TO CART</Button>
+            {/* <Button>BUY IT NOW</Button> */}
+
         </div>
     )
 }

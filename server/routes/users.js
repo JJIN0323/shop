@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const async = require('async')
+const moment = require('moment')
 const { User } = require('../models/User')
 const { Product } = require('../models/Product')
 const { Payment } = require('../models/Payment')
@@ -81,6 +82,7 @@ router.post('/cart', auth, (req, res) => {
     // User collection에서 User 정보를 가져옴
     // req.user._id는 auth에서 token에 User 정보가 저장
     // middleware/auth.js
+
     User.findOne({ _id: req.user._id },
         (err, userInfo) => {
 
@@ -148,17 +150,18 @@ router.post('/successBuy', auth, (req, res) => {
     // User collection에 history를 넣어줌
     let history = []
     let transactionData = {}
+    let cartInfo = req.body.cartDetail.product
 
-    //console.log('cartDetail ', req.body.cartDetail)
+    //console.log('cartDetail ', cartInfo)
     
-    req.body.cartDetail.forEach((item) => {
+    cartInfo.forEach((item) => {
         history.push({
             id: item._id,
             productTitle: item.subject,
             price: item.price,
             quantity: item.quantity,
             paymentId: req.body.paymentData.paymentID,
-            dateOfPurchase: Date.now()
+            dateOfPurchase: moment(new Date()).format('LLL')
         })
     })
 

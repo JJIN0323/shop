@@ -1,0 +1,31 @@
+import React from 'react'
+import commaNumber from 'comma-number'
+
+function HistoryPage(props) {
+
+    return (
+        <div className='container'>
+            <table>
+                <thead>
+                    <th colSpan={2}>Payment ID</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Date of Purchase</th>
+                </thead>
+                <tbody className='textCenter'>
+                    {props.user.userData && props.user.userData.history &&
+                        props.user.userData.history.map(item => (
+                            <tr key={item.id}>
+                                <td colSpan={2}>{item.paymentId}</td>
+                                <td className='price'>{commaNumber(item.price)}</td>
+                                <td>{item.quantity} EA</td>
+                                <td>{item.dateOfPurchase}</td>
+                            </tr>
+                    ))}
+                </tbody>
+            </table>
+        </div>
+    )
+}
+
+export default HistoryPage
