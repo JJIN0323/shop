@@ -151,7 +151,7 @@ router.post('/products_by_id', (req, res) => {
         if (err) return res.status(400).send(err)
         return res.status(200).json({
             success: true,
-            //views
+            views
             // https://velog.io/@nj_pk/mongoose-error-findOneAndUpdate-inc%EA%B0%80-%EB%91%90%EB%B0%B0%EB%A1%9C-%EB%90%98%EB%8A%94-%ED%98%84%EC%83%81
         })
     })

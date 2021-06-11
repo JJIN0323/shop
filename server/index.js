@@ -7,7 +7,6 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 
 const config = require('./config/key')
-const moment = require('moment')
 
 // const mongoose = require('mongoose')
 // mongoose

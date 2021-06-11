@@ -26,14 +26,14 @@ function DetailProductPage(props) {
         axios.post(`/api/product/products_by_id?id=${productId}&type=single`)
         .then(response => {
             if (response.data.success) {
-                setViews(response.data)
+                setViews(response.data.product)
                 //console.log('response.data', response.data.views)
             } else {
                 message.error('Failed to load view.')
             }
         })
     
-    })
+    }, [])
 
     return (
         <div className='container'>
