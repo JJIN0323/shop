@@ -2,10 +2,6 @@
 
 ### npm run both
 
-# Server : Node
-# Front : React
-# DB : mongoDB Atlas
-
 ------------
 
 ## Preview
