@@ -16,12 +16,12 @@ function UserCartItem(props) {
         props.products && props.products.map((product, index) => (
             <tr key={index}>
                 <td>
-                    <div className='cartImg'>
+                    <a href={`/product/shop/${product._id}`} className='cartImg'>
                         <img src={renderCartImage(product.images)} alt={product.subject} />
-                    </div>
+                    </a>
                 </td>
                 <td>
-                    <a href={`/product/shop/${product._id}`}>
+                    <a href={`/product/shop/${product._id}`} className='displayNone'>
                         {product.subject}
                     </a>
                 </td>

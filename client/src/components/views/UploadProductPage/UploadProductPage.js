@@ -5,7 +5,7 @@ import axios from 'axios'
 
 const formItemLayout = {
     wrapperCol: {
-      xs: { span: 12 },
+      xs: { span: 24 },
       sm: { span: 18 }
     }
 }

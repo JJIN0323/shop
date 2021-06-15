@@ -43,11 +43,12 @@ function RightMenu(props) {
           <a href='/product/upload'>Upload</a>
         </Menu.Item>
         <Menu.Item key='cart'>
-          <a href='/user/cart'>
+          <a href='/user/cart' className='pcCartMenu'>
             <Badge count={user.userData && user.userData.cart ? user.userData.cart.length : '' }>
               <BsBag className='cartIcon' />
             </Badge>
           </a>
+          <a href='/user/cart' className='mobileCartMenu'>Cart</a>
         </Menu.Item>
         <Menu.Item key='logout'>
           <a onClick={logoutHandler}>Sign out</a>

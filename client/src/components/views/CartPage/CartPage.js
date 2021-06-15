@@ -94,17 +94,14 @@ function CartPage(props) {
             : ShowSuccess ? 
             <div className='successMessage'>
                 Purchase Success
-                <span>What!!!!!!!!!!</span>
+                <span>{props.user.userData.email}</span>
                 <p className='total'>{Total}</p>
                 <Button className='grayButton small' onClick={HistoryHandler}>HISTORY</Button>
             </div>
             : <div className='failMessage'>No products in the cart</div>}
-            
 
             {/* {ShowTotal && <Paypal total={Total} onSuccess={transactionSuccess} /> } */}
             
-            
-
         </div>
         
     )

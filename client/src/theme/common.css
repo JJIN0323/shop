@@ -563,6 +563,53 @@ table thead {
     border-bottom: 1px solid #e2dfd9;
 }
 
+
+/* MOBILE TABLE */
+
+@media screen and (max-width: 763px) {
+
+    table td:first-child {
+        width: initial;
+        padding: 0.75em 0.75em;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
+    }
+
+    table td:nth-child(2) {
+        padding: 0;
+    }
+
+    table td:nth-child(2) > a.displayNone {
+        display: none;
+    }
+
+    table.history th {
+        display: none;
+    }
+    
+    table.history tbody tr {
+        display: grid;
+        border: 1px solid #e2dfd9;
+        margin: 0 0 1.5rem 0;
+    }
+    
+    table.history td {
+        text-align: left;
+    }
+
+    table.history td::before {
+        content: attr(data-label);
+        width: 7rem;
+        font-size: 1rem;
+        font-weight: bold;
+        padding-right: 1.5rem;
+        text-align: left;
+        float: left;
+    }
+}
+
+
 /* INPUT // BUTTON */
 
 input[type="button"],
@@ -704,6 +751,14 @@ nav.header > .menu > .mobileMenu {
     cursor: pointer;
 }
 
+.mobileCartMenu {
+    display: none;
+}
+
+.pcCartMenu {
+    display: block;
+}
+
 @media (max-width: 767px) {
     nav.header > .menu > .mobileMenu {
         display: inline-block !important;
@@ -711,6 +766,14 @@ nav.header > .menu > .mobileMenu {
 
     nav.header > .menu > .menuLeft,
     nav.header > .menu > .menuRight {
+        display: none;
+    }
+
+    .mobileCartMenu {
+        display: block;
+    }
+
+    .pcCartMenu {
         display: none;
     }
 }
@@ -909,28 +972,6 @@ nav.header > .menu > .mobileMenu {
     .cardItem:nth-child(2n) {
         padding-right: 0;
     }       
-}
-/* ANT DESIGN */
-
-.ant-carousel .slick-vertical .slick-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.ant-carousel-vertical .slick-dots li.slick-active button {
-    width: 0.5rem;
-    height: 1.5rem;
-}
-
-.ant-card-cover {
-    height: 26rem;
-}
-
-@media screen and (max-width: 1280px) {
-    .ant-card-cover {
-        height: 19rem;
-    }
 }
 
 /* DETAIL - PRODUCT INFO */

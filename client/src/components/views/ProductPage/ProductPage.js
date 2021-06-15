@@ -161,7 +161,7 @@ function ProductPage() {
             {/* CARDS - Helper method를 이용해서 function을 불러옴 */}
             { renderCards[0] ? <Row>
                 {renderCards}
-            </Row> : <div className='noMessage'>No search result</div> }
+            </Row> : <div className='failMessage'>No search result</div> }
             
 
             {/* MORE BUTTON */}

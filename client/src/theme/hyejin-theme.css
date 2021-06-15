@@ -4392,12 +4392,12 @@ a.ant-btn-sm {
   margin-left: -1px;
 }
 .ant-card-cover {
-  height: 25rem;
+  height: 26rem;
   overflow: hidden;
 }
 @media screen and (max-width: 1280px) {
   .ant-card-cover {
-    height: 20rem;
+    height: 19rem;
     overflow: hidden;
 }
 }
@@ -4688,7 +4688,9 @@ a.ant-btn-sm {
   visibility: hidden;
 }
 .ant-carousel .slick-vertical .slick-slide {
-  display: block;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: auto;
   margin-bottom: 0;
   border: 0;
@@ -4841,8 +4843,8 @@ a.ant-btn-sm {
   background: rgba(54, 47, 45, 0.5);
 }
 .ant-carousel-vertical .slick-dots li.slick-active button {
-  width: 3px;
-  height: 24px;
+  width: 0.5rem;
+  height: 1.5rem;
 }
 .ant-carousel-rtl {
   direction: rtl;
